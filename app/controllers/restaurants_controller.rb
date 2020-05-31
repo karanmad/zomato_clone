@@ -1,0 +1,50 @@
+class RestaurantsController < ApplicationController
+  def index
+    @restaurants = Restaurant.all
+  end
+
+  def new
+    @restaurant = Restaurant.new
+  end
+
+  def create
+    restaurant = Restaurant.new(restaurant_params)
+    if restaurant.save
+      redirect_to :root
+    else
+      flash[:errors] = restaurant.errors.full_messages
+      redirect_to :back
+    end
+  end
+  
+  def show
+    @restaurant = Restaurant.find(params[:id])
+  end
+  
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def update
+    restaurant = Restaurant.find(params[:id])
+
+    if restaurant.update(restaurant_params)
+      redirect_to :root
+    else
+      flash[:errors] = restaurant.errors.full_messages
+      redirect_to :back
+    end
+  end
+
+  def destroy
+    restaurant = Restaurant.find(params[:id])
+    restaurant.destroy
+    redirect_to :root
+  end
+
+  private
+    def restaurant_params
+      params.require(:restaurant).permit(:restaurant_name, :address, :phone_no)
+    end
+
+end

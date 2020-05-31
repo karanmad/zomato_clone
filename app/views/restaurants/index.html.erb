@@ -1,0 +1,29 @@
+<h1>THERE ARE <%= pluralize(@restaurants.length, "RESTAURANTS") %> IN THIS SITE</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Restaurant Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td><%= restaurant.restaurant_name %></td>
+      <td><%=restaurant.address %></td>
+      <td><%= restaurant.phone_no %></td>
+      <td>
+        <%= link_to "show Profile", restaurant_path(restaurant.id)%>|
+        <%= link_to "Edit Profile", edit_restaurant_path(restaurant.id)%>|
+        <%= link_to "Delete profile", restaurant_path(restaurant.id), data:{ method: :delete, confirm: "Are you sure" }%>
+      </td>
+    </tr>
+    <% end %>
+  </tbody> 
+</table>
+
+<%= link_to "Add restaurant", new_restaurant_path%>
