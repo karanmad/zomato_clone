@@ -10,10 +10,10 @@ class RestaurantsController < ApplicationController
   def create
     restaurant = Restaurant.new(restaurant_params)
     if restaurant.save
-      redirect_to :root
+      redirect_to "/restaurants"
     else
       flash[:errors] = restaurant.errors.full_messages
-      redirect_to :back
+      redirect_to "/restaurants/new"
     end
   end
   
@@ -29,17 +29,17 @@ class RestaurantsController < ApplicationController
     restaurant = Restaurant.find(params[:id])
 
     if restaurant.update(restaurant_params)
-      redirect_to :root
+      redirect_to "/restaurants"
     else
       flash[:errors] = restaurant.errors.full_messages
-      redirect_to :back
+      redirect_to "/restuarants/update"
     end
   end
 
   def destroy
     restaurant = Restaurant.find(params[:id])
     restaurant.destroy
-    redirect_to :root
+    redirect_to "/restaurants"
   end
 
   private
