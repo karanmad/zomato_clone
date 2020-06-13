@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       redirect_to "/restaurants"
     else
       flash[:errors] = user.errors.full_messages
-      redirect_to "/users/new"
+      redirect_to "/signup"
     end
   end
 

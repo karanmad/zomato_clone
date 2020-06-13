@@ -1,4 +1,4 @@
-<h1>sign up</h1>
+<!--<h1>sign up</h1>
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |e| %>
@@ -24,6 +24,64 @@
     <%= f.text_field :password_confirmation %>
   </p>
   <%= f.submit %>
+<% end %>-->
+
+<%= form_for(@user) do |form| %>
+  <div class="col-8 mx-auto">    
+    <div class="card">
+      <div class="card-header text-center">
+        <h3>signup</h3>
+      </div>
+      <div class="col-12 mx-auto">
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |e| %>
+          <p class="text-danger"><%= e %></p>
+        <% end %> 
+      <% end %>
+     </div>
+      
+      <div class="card-body text-right">
+        <div class="form-group row">
+          <%= form.label :Username, for: "Username", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.text_field :Username, for: "password", class: "form-control", autofocus: true,  autocomplete: "Username", placeholder: "Enter Password", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :email, for: "email", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-6">
+            <%= form.email_field :email,for: "email", class: "form-control", autocomplete: "email", placeholder: "Enter Email ID", required: true %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :password, for: "password", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.password_field :password, for: "password", class: "form-control", autocomplete: "current-password", placeholder: "Enter Password", required: true %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :password_confirmation, for: "password_confirmation", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.password_field :password_confirmation, for: "password_confirmation", class: "form-control", autocomplete: "current-password_confirmation", placeholder: "Enter Password", required: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center my-4">
+      <div class="col-2">
+        <strong><%= link_to "Back", root_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
+      </div>
+      <div class="col-2">
+        <strong><%= form.submit( "signup",{ class: "btn btn-success btn-md btn-block my-2 my-sm-0", data:{disable_with: "logging in.."}})%></strong>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center my-4">
+      <div class="col-4">
+        <strong><%= link_to "sign in with facebook", "/auth/facebook", class: "btn btn-primary btn-md btn-block my-2 my-sm-0" %></strong>
+      </div>
+  </div>
 <% end %>
 
-<%= link_to "sign in with facebook", "/auth/facebook" %>
+
