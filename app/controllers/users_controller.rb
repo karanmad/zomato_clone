@@ -11,16 +11,14 @@ class UsersController < ApplicationController
 
     if user.save
       session[:user_id] = user.id
-      redirect_to "/users/:id"
+      redirect_to "/restaurants"
     else
       flash[:errors] = user.errors.full_messages
       redirect_to "/users/new"
     end
   end
 
-  def show
-    
-  end
+ 
     
 
   def user_params

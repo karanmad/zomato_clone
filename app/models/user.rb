@@ -8,7 +8,7 @@ class User < ApplicationRecord
   (?=.*[A-Z])        # Must contain an upper case character
   (?=.*[[:^alnum:]]) # Must contain a symbol
   /x
-  validates :password, format: { with: PASSWORD_FORMAT , message: "must contain a upper case, a lower case character,a digit and a symbol with minimum 8 characters"}
+  validates :password, format: { with: PASSWORD_FORMAT , message: "must contain a upper case, a lower case character,a digit and a symbol with minimum 8 characters."}
   validates :Username, format: { with: /\A[a-zA-Z0-9]+\Z/ , message: "is not valid"}
   validates :Username, :email, presence: true
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
