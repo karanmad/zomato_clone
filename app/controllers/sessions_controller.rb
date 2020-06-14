@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success]="logged in successfully!"
-      redirect_to "/restaurants"
+      redirect_to :root
     else
       flash[:danger] = "credential doesn't match!"
       redirect_to "/login"

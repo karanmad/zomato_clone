@@ -1,36 +1,9 @@
-<!--<h1>sign up</h1>
-
-<% if flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p class="text-danger"><%= e %></p>
-  <% end %> 
-<% end %>
-
-<%= form_for(@user) do |f| %>
-  <p>
-    <%= f.label :Username %><br>
-    <%= f.text_field :Username %>
-  </p>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation%><br>
-    <%= f.text_field :password_confirmation %>
-  </p>
-  <%= f.submit %>
-<% end %>-->
 
 <%= form_for(@user) do |form| %>
   <div class="col-8 mx-auto">    
     <div class="card">
       <div class="card-header text-center">
-        <h3>signup</h3>
+        <h3>Edit Profile</h3>
       </div>
 
       
@@ -64,27 +37,16 @@
             <%= form.password_field :password, for: "password", class: "form-control", autocomplete: "current-password", placeholder: "Enter Password", required: true %>
           </div>
         </div>
-        <div class="form-group row">
-          <%= form.label :password_confirmation, for: "password_confirmation", class:"col-sm-4 col-form-label" %>
-          <div class="col-sm-6">
-            <%= form.password_field :password_confirmation, for: "password_confirmation", class: "form-control", autocomplete: "current-password_confirmation", placeholder: "Enter Password", required: true %>
-          </div>
-        </div>
       </div>
     </div>
     <div class="row justify-content-center my-4">
       <div class="col-2">
-        <strong><%= link_to "Back", root_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
+        <strong><%= link_to "Back", user_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
       </div>
       <div class="col-2">
-        <strong><%= form.submit( "signup",{ class: "btn btn-success btn-md btn-block my-2 my-sm-0", data:{disable_with: "logging in.."}})%></strong>
+        <strong><%= form.submit( "update",{ class: "btn btn-primary btn-md btn-block my-2 my-sm-0", data:{disable_with: "updating.."}})%></strong>
       </div>
     </div>
-  </div>
-  <div class="row justify-content-center my-4">
-      <div class="col-4">
-        <strong><%= link_to "sign in with facebook", "/auth/facebook", class: "btn btn-primary btn-md btn-block my-2 my-sm-0" %></strong>
-      </div>
   </div>
 <% end %>
 
