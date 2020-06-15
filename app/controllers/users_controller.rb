@@ -29,9 +29,9 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
 
     unless @user.update(edit_profile)
-      redirect_to "edit_user_path"
+      render "edit"
     else
-      redirect_to "user_path"
+      render "show"
     end
   end
     
@@ -41,6 +41,6 @@ class UsersController < ApplicationController
   end
 
   def edit_profile
-    params.require(:user).permit(:Username, :email, :password)
+    params.require(:user).permit(:Username, :password, :password_confirmation)
   end
 end

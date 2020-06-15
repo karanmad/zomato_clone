@@ -26,15 +26,16 @@
         </div>
 
         <div class="form-group row">
-          <%= form.label :email, for: "email", class:"col-sm-4 col-form-label"%>
-          <div class="col-sm-6">
-            <%= form.email_field :email,for: "email", class: "form-control", autocomplete: "email", placeholder: "Enter Email ID", required: true %>
-          </div>
-        </div>
-        <div class="form-group row">
           <%= form.label :password, for: "password", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
             <%= form.password_field :password, for: "password", class: "form-control", autocomplete: "current-password", placeholder: "Enter Password", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :password_confirmation, for: "password_confirmation", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6">
+            <%= form.password_field :password_confirmation, for: "password_confirmation", class: "form-control", autocomplete: "current-password_confirmation", placeholder: "Enter Password", required: true %>
           </div>
         </div>
       </div>
