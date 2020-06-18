@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  before_save { self.email = email.downcase }
   VALID_EMAIL_REGEX = 	/\A[\w+\-,]+@[a-z\d\-,]+\.[a-z]+\z/i
   PASSWORD_FORMAT = /\A
   (?=.{8,})          # Must contain 8 or more characters
