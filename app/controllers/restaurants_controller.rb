@@ -6,15 +6,17 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
+    @restaurant_category = RestaurantCategory.all
   end
 
   def create
-    restaurant = Restaurant.new(restaurant_params)
-    if restaurant.save
-      redirect_to "/restaurants"
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant_category = RestaurantCategory.all
+    unless @restaurant.save
+      render "new"
     else
-      flash[:errors] = restaurant.errors.full_messages
-      redirect_to "/restaurants/new"
+      flash[:success] = "restaurant is successfully created!"
+      redirect_to "/restaurants"
     end
   end
   
@@ -24,12 +26,14 @@ class RestaurantsController < ApplicationController
   
   def edit
     @restaurant = Restaurant.find(params[:id])
+    @restaurant_category = RestaurantCategory.all
   end
 
   def update
-    restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
 
-    if restaurant.update(restaurant_params)
+    if @restaurant.update(restaurant_params)
+      flash[:success] = "restaurant is successfully updated!"
       redirect_to "/restaurants"
     else
       flash[:errors] = restaurant.errors.full_messages
@@ -40,12 +44,13 @@ class RestaurantsController < ApplicationController
   def destroy
     restaurant = Restaurant.find(params[:id])
     restaurant.destroy
+    flash[:success] = "restaurant is deleted successfully!"
     redirect_to "/restaurants"
   end
 
   private
     def restaurant_params
-      params.require(:restaurant).permit(:restaurant_name, :address, :email, :phone_no)
+      params.require(:restaurant).permit(:restaurant_name, :address, :email, :phone_no, :restaurant_category_id)
     end
 
 end

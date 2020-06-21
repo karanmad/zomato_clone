@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:edit, :show]
   before_action :require_same_user, only: [:edit, :destroy]
   before_action :require_admin, only: [:destroy]
+  
   def index
   end
   

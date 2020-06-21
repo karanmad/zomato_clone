@@ -1,8 +1,8 @@
-<h1>THERE ARE <%= pluralize(@restaurants.length, "RESTAURANTS") %> IN THIS SITE</h1>
 
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">#</th>
       <th scope="col">Restaurant Name</th>
       <th scope="col">Address</th>
       <th scope="col">email</th>
@@ -12,21 +12,28 @@
   </thead>
 
   <tbody>
-    <% @restaurants.each do |restaurant| %>
+    <% @restaurants.each_with_index do |restaurant,i| %>
     <tr>
+      <td><%= i+1 %></td>
       <td><%= restaurant.restaurant_name %></td>
       <td><%=restaurant.address %></td>
       <td><%= restaurant.email %></td>
       <td><%= restaurant.phone_no %></td>
       <td>
-        <%= link_to "show Profile", restaurant_path(restaurant.id)%>|
-        <%= link_to "Edit Profile", edit_restaurant_path(restaurant.id)%>|
-        <%= link_to "Delete profile", restaurant_path(restaurant.id), data:{ method: :delete, confirm: "Are you sure" }%>
+      <div class="row">
+        <div class="col-sm-4">
+          <%= link_to "show", restaurant_path(restaurant.id)%>
+        </div>
+        <div class="col-sm-4">
+          <%= link_to "Edit", edit_restaurant_path(restaurant.id)%>
+        </div>
+        <div class="col-sm-4">
+          <%= link_to "Delete", restaurant_path(restaurant.id), data:{ method: :delete, confirm: "Are you sure" }%>
+        </div>
       </td>
     </tr>
     <% end %>
   </tbody> 
 </table>
 
-<%= link_to "Add restaurant", new_restaurant_path%> |
-<%= link_to "Logout", "/logout"%>
+<%= link_to "Add restaurant", new_restaurant_path%> 

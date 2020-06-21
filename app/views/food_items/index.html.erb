@@ -1,0 +1,42 @@
+ <div class="col-12 mx-auto">    
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Food Items</h3>
+    </div>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Food Items</th>
+            <th scope="col">Price</th>
+            <th scope="col">Restaurant_id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @food_items.each_with_index do |items,i| %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= items.name %></td>
+            <td><%= items.price %></td>
+            <td><%= items.restaurant_id %></td>
+            <td>
+            <div class="row">
+              <div class="col-sm-4">
+                <%= link_to "Edit", edit_food_item_path(items.id)%>
+              </div>
+              <div class="col-sm-4">
+                <%= link_to "Delete", food_item_path(items.id), data:{ method: :delete, confirm: "Are you sure" }%>
+              </div>
+            </td>
+          </tr>
+          <% end %>
+        </tbody> 
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-2">   
+      <%= link_to "Add food_item", new_food_item_path, class: "btn btn-success btn-md btn-block my-2 my-sm-0"%> 
+    </div>
+</div>

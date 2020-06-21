@@ -1,0 +1,35 @@
+<div class="page-wrapper">
+  <div class="wrapper">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="title text-center">Create Restaurant category</h1>
+        <% content_for :title, "Create Category" %>
+        <% if @category.errors.any? %>          
+          <div class="alert alert-danger text-left">
+            <ul>
+              <% @category.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <%end%>
+            </ul>
+          </div>
+        <% end %>
+        <%= form_for  @category do |form| %>
+          <div class="form-group row">
+            <%= form.label :name,"Restaurant category", for: "Restaurant category", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-9">
+              <%= form.text_field :name, for: "Restaurant category", class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter name", required: true %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <strong><%= link_to "BACK", restaurants_path, class: "btn btn-danger btn-lg btn-block my-2 my-sm-0" %></strong>
+            </div>
+            <div class="col-2">
+              <strong><%= form.submit "CREATE", class:"btn btn-primary btn-lg btn-block my-2 my-sm-0" %></strong>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

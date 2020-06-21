@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   get "logout" => "sessions#destroy" 
   get "error", to: "pages#show"
-  resources :categories
+  resources :restaurant_categories
+  resources :food_items
 end
