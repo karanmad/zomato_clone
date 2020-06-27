@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "error", to: "pages#show"
   resources :restaurant_categories
   resources :food_items
+  resources :admin_dashboards
 end

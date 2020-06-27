@@ -3,9 +3,9 @@
 one:
   name: MyString
   price: 9.99
-  restaurant_id: one
+  restaurant: one
 
 two:
   name: MyString
   price: 9.99
-  restaurant_id: two
+  restaurant: two

@@ -1,0 +1,56 @@
+<div class="page-wrapper">
+  <div class="wrapper">
+    <div class="card">
+      <div class="card-body">
+         <% unless["edit"].include?(params[:action])%>
+          <h1 class="title text-center">Create Food Item</h1>
+          <% content_for :title, "Create Category" %>
+        <% else %>
+          <h1 class="title text-center">Update Food Item</h1>
+          <% content_for :title, "Update Category" %>
+        <% end %>
+        <% if @food_items.errors.any? %>          
+          <div class="alert alert-danger text-left">
+            <ul>
+              <% @food_items.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <%end%>
+            </ul>
+          </div>
+        <% end %>
+        <%= form_for(@food_items) do |form| %>
+          <div class="form-group row">
+            <%= form.label :name,"Food Item Name :", for: "name", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-9">
+              <%= form.text_field :name, for: "name", class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter name", required: true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :price,"price :", for: "price", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-9">
+              <%= form.text_field :price, for: "price", class: "form-control", autocomplete: "price", placeholder: "Enter Amount", required: true %>
+            </div>
+          </div>
+           <div class="form-group row">
+            <%= form.label :restaurant, for: "restaurant", class:"col-sm-4 col-form-label"  %>
+            <div class="col-sm-2 my-2">
+              <%= form.select(:restaurant_id)  do %>
+                <% @restaurant.each do |c| %>
+                  <%= content_tag(:option, c.restaurant_name, value: c.id) %>
+                <% end %>
+              <% end %>
+            </div>      
+          </div>  
+          <div class="row justify-content-center">
+            <div class="col-2">
+              <strong><%= link_to "BACK", food_items_path, class: "btn btn-secondary btn-lg btn-block my-2 my-sm-0" %></strong>
+            </div>
+            <div class="col-2">
+              <strong><%= form.submit "CREATE", class:"btn btn-primary btn-lg btn-block my-2 my-sm-0" %></strong>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse dropleft" id="navbarNavDropdown">
+      <% unless !logged_in? and !current_user.admin? %>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin_dashboards">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      <% end %>
       <% unless logged_in? %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">

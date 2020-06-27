@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Add New Restaurant</h4>
+      </div>
+      <div class="card-body">
+        <div class="mt-5 mb-4">
+          <p>create new restaurant by filling its name, address,phone number and other details</p> 
+        </div>
+        <strong> <%= link_to "Add New Restaurant", new_restaurant_path, class: "btn btn-lg btn-block btn-primary" %></strong>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Edit/Delete Restaurant</h4>
+      </div>
+      <div class="card-body">
+        <div class="mt-5 mb-4">
+          <p>Restaurants along with its deatails. Admin can also edit ,delete the added restaurants.</p> 
+        </div>
+        <strong> <%= link_to "Restaurants", restaurants_path, class: "btn btn-lg btn-block btn-primary" %></strong>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Food Item</h4>
+      </div>
+      <div class="card-body">
+        <div class="mt-5 mb-4">
+          <p>create new food item by choosing restaurant and also edit and delete the food item</p> 
+        </div>
+        <strong> <%= link_to "Food Item", food_items_path, class: "btn btn-lg btn-block btn-primary" %></strong>
+      </div>
+    </div>
+  </div>
+</div>
+  

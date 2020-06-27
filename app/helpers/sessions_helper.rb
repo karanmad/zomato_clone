@@ -18,7 +18,7 @@ module SessionsHelper
   def require_admin
     unless logged_in? and current_user.admin?
       flash[:danger] = "only admin can perform this action!"
-      redirect_to root_path
+      redirect_to error_path
     end
   end
       

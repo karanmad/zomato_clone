@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :require_admin
   
   def index
     @restaurants = Restaurant.all
@@ -11,12 +12,12 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant_category = RestaurantCategory.all
+
     unless @restaurant.save
       render "new"
     else
       flash[:success] = "restaurant is successfully created!"
-      redirect_to "/restaurants"
+      redirect_to new_restaurant_path
     end
   end
   
@@ -36,8 +37,8 @@ class RestaurantsController < ApplicationController
       flash[:success] = "restaurant is successfully updated!"
       redirect_to "/restaurants"
     else
-      flash[:errors] = restaurant.errors.full_messages
-      redirect_to "/restuarants/update"
+      render "edit"
+      
     end
   end
 
