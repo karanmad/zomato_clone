@@ -55,3 +55,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'hirb'
 gem 'omniauth-facebook'
+gem "paperclip", "~> 6.0.0"
