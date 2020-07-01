@@ -1,3 +1,13 @@
 <h1>This is the show page of <%= @restaurant.restaurant_name %> restaurant</h1> 
 
-<%= link_to "Home page", restaurants_path%>
+ <div class="row justify-content-center my-4">
+      <div class="col-2">
+        <strong><%= link_to "Back", users_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
+      </div>
+      <div class="col-2">
+        <strong><%= link_to "Menu", menu_path(restaurant: @restaurant.id), class: "btn btn-primary btn-md btn-block my-2 my-sm-0" %></strong>
+      </div>
+      <div class="col-2">
+        <strong><%= link_to "Online order", users_path, class: "btn btn-danger btn-md btn-block my-2 my-sm-0" %></strong>
+      </div>
+    </div>

@@ -1,3 +1,3 @@
 class RestaurantCategory < ApplicationRecord
-  has_many :restaurant
+  has_many :restaurants
 end

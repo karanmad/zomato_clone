@@ -1,0 +1,28 @@
+ <div class="col-12 mx-auto">    
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Menu</h3>
+    </div>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Food Items</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @restaurant.food_items.each_with_index do |items,i| %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%=  items.name %></td>
+            <td>Rs <%= items.price %> </td>
+          </tr>
+          <% end %>
+        </tbody> 
+      </table>
+    </div>
+  
+  </div>
+</div>
