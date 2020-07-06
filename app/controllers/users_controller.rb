@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def new
     redirect_to users_path if logged_in? 
     @user = User.new
+    get_cart
   end
 
   def create

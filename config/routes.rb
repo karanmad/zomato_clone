@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "users#index"
+  post "carts/add"
   resources :restaurants
   resources :users, except:[:new]
   get "signup", to: "users#new"
