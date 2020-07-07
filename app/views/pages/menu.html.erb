@@ -22,7 +22,7 @@
             <td>
               <%= form_for CartItem.new, url: carts_add_path do |f| %>
                 <%= f.hidden_field :food_item_id, value: items.id %>
-                <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
+                <%= f.number_field :quantity, value: 1, min: 1, max: 10, class: "form-control" %>
                 <%= f.submit "Add To Cart", class: "btn btn-primary"%>
               <% end %>
             </td>

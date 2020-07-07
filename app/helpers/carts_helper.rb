@@ -1,4 +1,5 @@
 module CartsHelper
+
   def get_cart
     unless session[:cart_id]
       unless !!current_user.carts.last
@@ -12,8 +13,17 @@ module CartsHelper
   end
     
   def set_cart
-    @cart = Cart.create
+    @cart = current_user.carts.create
     session[:cart_id] = @cart.id
     @cart
   end
+
+  def require_same_restaurant
+    unless @cart.cart_items.first.food_item.restaurant_id == @cart.cart_items.last.food_item.restaurant_id
+      @cart.cart_items.delete_all
+    end
+  end
+
+
+
 end

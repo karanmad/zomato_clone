@@ -10,7 +10,8 @@ class RestaurantCategoriesController < ApplicationController
     unless @category.save
       render "new"
     else
-      redirect_to restaurants_path
+      flash[:success] = "Category added successfully!"
+      redirect_to new_restaurant_category_path
     end
     
   end
