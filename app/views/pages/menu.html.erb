@@ -1,36 +1,37 @@
- <div class="col-12 mx-auto">    
-  <div class="card">
-    <div class="card-header text-center">
-      <h3>Menu</h3>
+ <div class="row">
+  <div class="col-11 mx-auto">    
+    <div class="card">
+      <div class="card-header text-center">
+        <h3>Menu</h3>
+      </div>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Food Items</th>
+              <th scope="col">Price</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @restaurant.food_items.each_with_index do |items,i| %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%=  items.name %></td>
+              <td>Rs <%= items.price %> </td>
+              <td>
+                <%= form_for CartItem.new, url: cart_items_add_path do |f| %>
+                  <%= f.hidden_field :food_item_id, value: items.id %>
+                  <%= f.number_field :quantity, value: 1, min: 1, max: 10, class: "form-control" %>
+                  <%= f.submit "Add To Cart", class: "btn btn-primary"%>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody> 
+        </table>
+      </div>
     </div>
-    <div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Food Items</th>
-            <th scope="col">Price</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @restaurant.food_items.each_with_index do |items,i| %>
-          <tr>
-            <td><%= i+1 %></td>
-            <td><%=  items.name %></td>
-            <td>Rs <%= items.price %> </td>
-            <td>
-              <%= form_for CartItem.new, url: carts_add_path do |f| %>
-                <%= f.hidden_field :food_item_id, value: items.id %>
-                <%= f.number_field :quantity, value: 1, min: 1, max: 10, class: "form-control" %>
-                <%= f.submit "Add To Cart", class: "btn btn-primary"%>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody> 
-      </table>
-    </div>
-  
   </div>
 </div>

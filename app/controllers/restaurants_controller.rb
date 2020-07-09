@@ -34,12 +34,11 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
 
-    if @restaurant.update(restaurant_params)
+    unless @restaurant.update(restaurant_params)
+      render "edit"
+    else
       flash[:success] = "restaurant is successfully updated!"
       redirect_to "/restaurants"
-    else
-      render "edit"
-      
     end
   end
 
