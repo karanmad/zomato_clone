@@ -1,4 +1,6 @@
 class FoodItemsController < ApplicationController
+  before_action :require_admin
+  
   def index
     @food_items = FoodItem.all
   end
@@ -46,7 +48,5 @@ class FoodItemsController < ApplicationController
     def items_params
       params.require(:food_item).permit(:name, :price, :restaurant_id)
     end
-
-
-
+    
 end

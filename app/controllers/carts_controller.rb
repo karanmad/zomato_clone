@@ -5,6 +5,4 @@ class CartsController < ApplicationController
     @cart_items = @cart.cart_items.all
   end
   
-
-  
 end

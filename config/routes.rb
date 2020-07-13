@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :book_tables, except: [:show]
+  get "table_booked", to: "book_tables#show"
+
+  resources :orders, except: [:show]
+  get "order", to: "orders#show", as: "order_show"
+  
   root "users#index"
   resources :users, except:[:new]
   get "signup", to: "users#new"

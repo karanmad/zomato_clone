@@ -11,8 +11,12 @@ class SessionsController < ApplicationController
       flash[:success]="logged in successfully!"
       redirect_to :root
     else
-      flash[:danger] = "Either email or password is wrong!"
-      redirect_to "/login"
+      unless !user
+        flash[:errors] = ["Wrong Password!"]
+      else
+        flash[:errors] = ["Wrong Email!"]
+      end
+      render "new"
     end
   end
 
@@ -21,6 +25,5 @@ class SessionsController < ApplicationController
     flash[:success]="logged out successfully!"
     redirect_to :root
   end
-
 
 end

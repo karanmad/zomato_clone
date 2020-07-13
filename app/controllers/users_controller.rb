@@ -64,7 +64,5 @@ class UsersController < ApplicationController
         redirect_to :error
       end
     end
-
     
-
 end

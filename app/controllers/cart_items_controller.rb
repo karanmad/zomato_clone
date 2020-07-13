@@ -22,9 +22,16 @@ class CartItemsController < ApplicationController
     end
   end
 
-
-  def cart_items_params
-    params.require(:cart_item).permit(:food_item_id, :quantity)
+  def destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    flash[:success] = "food item successfully removed!"
+    redirect_to cart_path
   end
+
+  private
+    def cart_items_params
+      params.require(:cart_item).permit(:food_item_id, :quantity)
+    end
 
 end

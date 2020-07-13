@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_215845) do
+ActiveRecord::Schema.define(version: 2020_07_11_205002) do
+
+  create_table "book_tables", force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.integer "heads"
+    t.integer "user_id", null: false
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_book_tables_on_restaurant_id"
+    t.index ["user_id"], name: "index_book_tables_on_user_id"
+  end
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "quantity"
-    t.decimal "subtotal"
     t.integer "food_item_id", null: false
     t.integer "cart_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -27,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_07_06_215845) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.boolean "final", default: false
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -37,6 +51,12 @@ ActiveRecord::Schema.define(version: 2020_07_06_215845) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_food_items_on_restaurant_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.text "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "restaurant_categories", force: :cascade do |t|
@@ -57,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_215845) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.decimal "table_price"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,8 +89,11 @@ ActiveRecord::Schema.define(version: 2020_07_06_215845) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "book_tables", "restaurants"
+  add_foreign_key "book_tables", "users"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "food_items"
+  add_foreign_key "carts", "orders"
   add_foreign_key "carts", "users"
   add_foreign_key "food_items", "restaurants"
 end

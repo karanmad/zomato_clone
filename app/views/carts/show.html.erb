@@ -10,9 +10,9 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Food Items</th>
-              <th scope="col">Unit price</th>
+              <th scope="col">Unit price(Rs)</th>
               <th scope="col">Quantity</th>
-              <th scope="col">Subtotal</th>
+              <th scope="col">Subtotal(Rs)</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -22,16 +22,17 @@
               <td><%= i+1 %></td>
               <td><%=  item.food_item.name %></td>
               <td><%= item.food_item.price %> </td>
-              <%= form_for item do |f| %>
-              <%= f.hidden_field :food_item_id, value: item.food_item.id %>
-                <td><%= f.number_field :quantity, value: item.quantity %>
+              <td>
+                  <%= form_for item do |f| %>
+                    <%= f.hidden_field :food_item_id, value: item.food_item.id %>
+                    <%= f.number_field :quantity, value: item.quantity %>
                     <%= f.submit "Update Cart"%>
-                </td>
-                <td><%= item.subtotal%></td>
-                <td>
-                  <%= link_to "Remove items", item, method: :delete, remote: true %>
-                </td>
-              <% end %>
+                  <% end %>
+              </td>
+              <td><%= item.subtotal%></td>
+              <td>
+                <%= link_to "Remove item", cart_item_path(item.id), method: :delete, remote: true, class: "btn btn-danger"%>
+              </td>
             </tr>
             <% end %>
           </tbody> 
@@ -41,3 +42,23 @@
     </div>
   </div>
 </div>
+
+<%= form_for Order.new  do |form| %>
+  <div class="col-10 mx-auto mt-5">    
+    <div class="card">
+      <div class="card-body text-right">
+        <div class="form-group row text-left">
+          <%= form.label :delivery_address, for: "address", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-8">
+            <%= form.text_field :address,for: "address", class: "form-control",  autocomplete: "address", placeholder: "Enter address", required: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center my-4">
+      <div class="col-2">
+        <strong><%= form.submit( "Order",{ class: "btn btn-primary btn-md btn-block my-2 my-sm-0" })%></strong>
+      </div>
+    </div>
+  </div>
+<% end %>

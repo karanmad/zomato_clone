@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :carts
+  has_many :book_tables
+  has_many :orders, through: :carts
+
   has_secure_password
   before_save { self.email = email.downcase }
   VALID_EMAIL_REGEX = 	/\A[\w+\-,]+@[a-z\d\-,]+\.[a-z]+\z/i
