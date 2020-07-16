@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_205002) do
+ActiveRecord::Schema.define(version: 2020_07_16_144921) do
 
   create_table "book_tables", force: :cascade do |t|
     t.date "date"
@@ -39,8 +39,6 @@ ActiveRecord::Schema.define(version: 2020_07_11_205002) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.boolean "final", default: false
-    t.integer "order_id"
-    t.index ["order_id"], name: "index_carts_on_order_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -57,6 +55,8 @@ ActiveRecord::Schema.define(version: 2020_07_11_205002) do
     t.text "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "cart_id", null: false
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
   create_table "restaurant_categories", force: :cascade do |t|
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2020_07_11_205002) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.decimal "table_price"
+    t.float "longitude"
+    t.float "latitude"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_205002) do
   add_foreign_key "book_tables", "users"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "food_items"
-  add_foreign_key "carts", "orders"
   add_foreign_key "carts", "users"
   add_foreign_key "food_items", "restaurants"
+  add_foreign_key "orders", "carts"
 end

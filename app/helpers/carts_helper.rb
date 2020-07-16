@@ -1,24 +1,22 @@
 module CartsHelper
 
   def get_cart
-    unless session[:cart_id]
-      unless current_user.carts.count > 0 && !current_user.carts.last.final
-        set_cart
-      else
-        @cart = current_user.carts.last
-        session[:cart_id] = @cart.id
-        @cart
-      end
+    if current_user.carts.count > 0 && !current_user.carts.last.final
+      current_cart
     else
-      @cart ||= Cart.find(session[:cart_id])
+      set_cart
     end
   end
     
   def set_cart
-    @cart = current_user.carts.create()
-    session[:cart_id] = @cart.id
-    @cart
+    @cart = current_user.carts.create
+    
   end
+
+  def current_cart
+    @cart ||= current_user.carts.last
+  end
+
 
   def require_same_restaurant
     unless @cart.cart_items.first.food_item.restaurant_id == @cart.cart_items.last.food_item.restaurant_id

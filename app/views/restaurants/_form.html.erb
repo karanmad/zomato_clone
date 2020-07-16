@@ -44,6 +44,12 @@
             </div>
           </div>
           <div class="form-group row">
+            <%= form.label :table_price,"Table price :", for: "table_price", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-9">
+              <%= form.text_field :table_price, for: "table_price", class: "form-control", autofocus: true, autocomplete: "table price", placeholder: "Enter price", required: true %>
+            </div>
+          </div>
+          <div class="form-group row">
             <%= form.label :image,"Restaurant Image:", for: "image", class:"col-sm-3 col-form-label"%>
             <div class="col-sm-9">
               <%= form.file_field :image, for: "image", class: "form-control", autofocus: true, autocomplete: "image", placeholder: "upload image", required: true %>

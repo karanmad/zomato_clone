@@ -1,0 +1,65 @@
+********************************* 1. row *********************************
+                    id: 12
+       restaurant_name: arsalan
+               address: dumdum kolkata
+              phone_no: 9874561230
+            created_at: 2020-06-28 00:44:42 UTC
+            updated_at: 2020-07-11 10:22:11 UTC
+                 email: arsalan@abc.com
+restaurant_category_id: 2
+       image_file_name: arsalan2.jpg
+    image_content_type: image/jpeg
+       image_file_size: 119892
+      image_updated_at: 2020-06-28 00:44:41 UTC
+           table_price: 500.0
+             longitude: 
+              latitude: 
+********************************* 2. row *********************************
+                    id: 13
+       restaurant_name: gupta veg
+               address: kestopur,kolkata
+              phone_no: 9854671230
+            created_at: 2020-06-28 00:45:19 UTC
+            updated_at: 2020-07-11 10:22:39 UTC
+                 email: gupta@abc.com
+restaurant_category_id: 5
+       image_file_name: guptas-veg-hatiara-kolkata-pure-veg-restaurants-0d8sydsva9.jpeg
+    image_content_type: image/jpeg
+       image_file_size: 140287
+      image_updated_at: 2020-06-28 00:45:18 UTC
+           table_price: 600.0
+             longitude: 
+              latitude: 
+********************************* 3. row *********************************
+                    id: 14
+       restaurant_name: haldiram
+               address: howarh
+              phone_no: 4561237890
+            created_at: 2020-06-28 00:46:07 UTC
+            updated_at: 2020-07-11 10:22:56 UTC
+                 email: haldiram@abc.com
+restaurant_category_id: 3
+       image_file_name: haldiram_660_022017044234_051619013030.jpg
+    image_content_type: image/jpeg
+       image_file_size: 38707
+      image_updated_at: 2020-06-28 00:46:07 UTC
+           table_price: 700.0
+             longitude: 
+              latitude: 
+********************************* 4. row *********************************
+                    id: 15
+       restaurant_name: rang de basanti
+               address: salt lake sector 5 kolkata
+              phone_no: 7896542310
+            created_at: 2020-07-13 21:09:09 UTC
+            updated_at: 2020-07-13 21:09:09 UTC
+                 email: rangdebasanti@gmail.com
+restaurant_category_id: 6
+       image_file_name: 7423411.jpg
+    image_content_type: image/jpeg
+       image_file_size: 118107
+      image_updated_at: 2020-07-13 21:09:08 UTC
+           table_price: 
+             longitude: 
+              latitude: 
+4 rows in set

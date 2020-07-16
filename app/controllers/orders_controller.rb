@@ -1,27 +1,23 @@
 class OrdersController < ApplicationController
   def create
-    order = current_user.orders.new(order_params)
-    unless order.save
-      render cart_path
-    else
-      cart = get_cart
-      cart.final = true
-      cart.order_id = order.id
-      cart.save
-      session[:cart_id] = nil
-      order = nil
+    order = Order.new(order_params)
+    if order.save
+      place_order
       flash[:success] = "Order is successfully placed!"
       redirect_to order_show_path
+    else
+      render cart_path      
     end
   end  
 
   def show
-    @placed_cart = current_user.carts.reverse.second
+    @placed_cart = current_user.carts.where(final: true).last
   end
   
   private
-    def order_params
-      params.require(:order).permit(:address)
-    end
+
+  def order_params
+    params.require(:order).permit(:cart_id, :address)
+  end
 
 end

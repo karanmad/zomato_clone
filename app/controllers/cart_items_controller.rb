@@ -1,8 +1,7 @@
 class CartItemsController < ApplicationController
 
   def add
-    cart = get_cart
-    cart = cart.cart_items.new(cart_items_params)
+    cart = get_cart.cart_items.new(cart_items_params)
     require_same_restaurant
     unless cart.save
       flash[:danger] = "fooditem already added"

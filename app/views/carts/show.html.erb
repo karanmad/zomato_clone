@@ -48,6 +48,7 @@
     <div class="card">
       <div class="card-body text-right">
         <div class="form-group row text-left">
+          <%= form.hidden_field :cart_id, value: current_cart.id%>
           <%= form.label :delivery_address, for: "address", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-8">
             <%= form.text_field :address,for: "address", class: "form-control",  autocomplete: "address", placeholder: "Enter address", required: true %>

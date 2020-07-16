@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+      flash[:success] = "logged in successfully!"
       redirect_to :root
     else
       render "new"
