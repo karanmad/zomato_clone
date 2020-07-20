@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_144921) do
+ActiveRecord::Schema.define(version: 2020_07_20_043903) do
 
   create_table "book_tables", force: :cascade do |t|
     t.date "date"
@@ -51,6 +51,32 @@ ActiveRecord::Schema.define(version: 2020_07_16_144921) do
     t.index ["restaurant_id"], name: "index_food_items_on_restaurant_id"
   end
 
+  create_table "food_uploads", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer "review_id"
+    t.index ["restaurant_id"], name: "index_food_uploads_on_restaurant_id"
+    t.index ["review_id"], name: "index_food_uploads_on_review_id"
+  end
+
+  create_table "menu_uploads", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer "review_id"
+    t.index ["restaurant_id"], name: "index_menu_uploads_on_restaurant_id"
+    t.index ["review_id"], name: "index_menu_uploads_on_review_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.text "address"
     t.datetime "created_at", precision: 6, null: false
@@ -63,6 +89,19 @@ ActiveRecord::Schema.define(version: 2020_07_16_144921) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "restaurant_uploads", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer "review_id"
+    t.index ["restaurant_id"], name: "index_restaurant_uploads_on_restaurant_id"
+    t.index ["review_id"], name: "index_restaurant_uploads_on_review_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -82,6 +121,17 @@ ActiveRecord::Schema.define(version: 2020_07_16_144921) do
     t.float "latitude"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "feedback"
+    t.integer "user_id", null: false
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "Username"
     t.string "email"
@@ -97,5 +147,13 @@ ActiveRecord::Schema.define(version: 2020_07_16_144921) do
   add_foreign_key "cart_items", "food_items"
   add_foreign_key "carts", "users"
   add_foreign_key "food_items", "restaurants"
+  add_foreign_key "food_uploads", "restaurants"
+  add_foreign_key "food_uploads", "reviews"
+  add_foreign_key "menu_uploads", "restaurants"
+  add_foreign_key "menu_uploads", "reviews"
   add_foreign_key "orders", "carts"
+  add_foreign_key "restaurant_uploads", "restaurants"
+  add_foreign_key "restaurant_uploads", "reviews"
+  add_foreign_key "reviews", "restaurants"
+  add_foreign_key "reviews", "users"
 end

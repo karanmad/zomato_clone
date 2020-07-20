@@ -1,17 +1,17 @@
-<div class="container">
-  <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 shadow-sm">
+<div class="card-deck mb-3 text-center container">
+  <div class="row justify-content-center">
+    <div class="card mb-4 shadow-sm  col-md-3">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Add New Restaurant</h4>
       </div>
       <div class="card-body">
         <div class="mt-5 mb-4">
-          <p>create new restaurant by filling its name, address,phone number and other details</p> 
+          <p>create new restaurant by filling its details and Upload images for menu,food & restaurant</p> 
         </div>
         <strong> <%= link_to "Add New Restaurant", new_restaurant_path, class: "btn btn-lg btn-block btn-primary" %></strong>
       </div>
     </div>
-    <div class="card mb-4 shadow-sm">
+    <div class="card mb-4 shadow-sm col-md-3">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Edit/Delete Restaurant</h4>
       </div>
@@ -22,7 +22,7 @@
         <strong> <%= link_to "Restaurants", restaurants_path, class: "btn btn-lg btn-block btn-primary" %></strong>
       </div>
     </div>
-    <div class="card mb-4 shadow-sm">
+    <div class="card mb-4 shadow-sm col-md-3">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Food Item</h4>
       </div>
@@ -33,17 +33,31 @@
         <strong> <%= link_to "Food Item", food_items_path, class: "btn btn-lg btn-block btn-primary" %></strong>
       </div>
     </div>
-     <div class="card mb-4 shadow-sm">
+  </div>
+  <div class="row justify-content-center">
+    <div class="card mb-4 shadow-sm col-md-3">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Restaurant Category</h4>
       </div>
       <div class="card-body">
         <div class="mt-5 mb-4">
-          <p>create new category for restaurant, if not not avilable in the list</p> 
+          <p>create new category for restaurant, if not not avilable in the list of restaurant category</p> 
         </div>
         <strong> <%= link_to "Food Item", new_restaurant_category_path, class: "btn btn-lg btn-block btn-primary" %></strong>
       </div>
     </div>
+    <div class="card mb-4 shadow-sm col-md-3">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Upload Images</h4>
+      </div>
+      <div class="card-body">
+        <div class="mt-5 mb-4">
+          <p>Add image for restaurant, menu and food by selecting restaurant, multiple image can be uploaded</p> 
+        </div>
+        <strong> <%= link_to "Add Images", restaurant_list_path, class: "btn btn-lg btn-block btn-primary" %></strong>
+      </div>
+    </div>
   </div>
 </div>
+
   

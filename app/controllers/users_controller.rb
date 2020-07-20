@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   
   def index
     @restaurant = Restaurant.all
+    #@restaurant = Restaurant.search((params[:q].present? ? params[:q] : '*')).records
   end
   
   def new

@@ -1,0 +1,49 @@
+<div class="page-wrapper">
+  <div class="wrapper">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="title text-center">Upload Images</h1>
+        <% content_for :title, "Upload Images" %>
+
+        <% if @restaurant.errors.any? %>          
+        <div class="alert alert-danger text-left">
+          <ul>
+            <% @restaurant.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <%end%>
+          </ul>
+        </div>
+        <% end %>
+        <%= form_for @restaurant, url: upload_image_path(@restaurant.id) do |form| %>
+          <h5>*[Optional field, Multiple image can be selected]</h5> 
+          <div class="form-group row">
+            <%= form.label :image,"Restaurant Images:", for: "image", class:"col-sm-3 col-form-label"%>
+              <div class="col-sm-9">
+                <%= form.file_field :files, for: "image", multiple: true, class: "form-control", autofocus: true, autocomplete: "image", placeholder: "upload image" %>
+              </div>
+          </div>   
+          <div class="form-group row">
+          <%= form.label :image,"Food Images:", for: "image", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-9">
+              <%= form.file_field :pictures, for: "image", multiple: true, class: "form-control", autofocus: true, autocomplete: "image", placeholder: "upload image" %>
+            </div>
+          </div> 
+           <div class="form-group row">
+          <%= form.label :image,"Menu Images:", for: "image", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-9">
+              <%= form.file_field :photos, for: "image", multiple: true, class: "form-control", autofocus: true, autocomplete: "image", placeholder: "upload image" %>
+            </div>
+          </div>  
+          <div class="row justify-content-center">
+            <div class="col-2">
+              <strong><%= link_to "BACK", restaurant_list_path, class: "btn btn-danger btn-lg btn-block my-2 my-sm-0" %></strong>
+            </div>
+            <div class="col-2">
+              <strong><%= form.submit "CREATE", class:"btn btn-primary btn-lg btn-block my-2 my-sm-0" %></strong>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

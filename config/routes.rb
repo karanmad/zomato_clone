@@ -23,10 +23,15 @@ Rails.application.routes.draw do
 
   get "error", to: "pages#show"
   get "menu", to: "pages#menu"
+  get "restaurant_list", to: "pages#index"
+  get "upload_image", to: "pages#edit"
+  patch "upload_image", to: "pages#update"
 
   resources :restaurant_categories
 
   resources :food_items
 
   resources :admin_dashboards
+
+  resources :reviews
 end

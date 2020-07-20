@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :orders, through: :cart
-  has_many :book_tables
+  has_many :book_tables, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   has_secure_password
   NAME_FORMAT = /\A(?=.* )[^0-9`!@#\\\$%\^&*\;+_=]{4,}/x

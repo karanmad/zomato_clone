@@ -1,0 +1,62 @@
+<%= form_for @review do |form| %>
+  <div class="col-8 mx-auto">    
+    <div class="card">
+      <div class="card-header text-center">
+        <h3>REVIEW</h3>
+      </div>      
+      <div class="card-body text-right">
+        <% if flash[:errors] %>          
+          <div class="alert alert-danger text-left">
+            <ul>
+              <% flash[:errors].each do |msg| %>
+                <li><%= msg %></li>
+              <%end%>
+            </ul>
+          </div>
+        <% end %>
+        <%= form.hidden_field :restaurant_id, value: @restaurant.id %>
+        <div class="form-group row">
+          <%= form.label :rating, for: "rating", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-6 ">
+            <%= form.number_field :rating,for: "rating", class: "form-control", min: 1, max: 5, id: "myInput", oninput: "myFunction()", placeholder: "rate out of 5", required: true %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :review, for: "feedback", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6 text-left">
+            <%= form.text_area :feedback, class: "form-control", rows: 4, required: true %>
+          </div>
+        </div>
+        <h5 class="text-center">[upload images]</h5> 
+        <div class="form-group row">
+          <%= form.label :image,"Restaurant Images:", for: "image", class:"col-sm-3 col-form-label"%>
+            <div class="col-sm-9">
+              <%= form.file_field :files, for: "image", multiple: true, class: "form-control", autofocus: true, autocomplete: "image", placeholder: "upload image" %>
+            </div>
+        </div>   
+        <div class="form-group row">
+        <%= form.label :image,"Food Images:", for: "image", class:"col-sm-3 col-form-label"%>
+          <div class="col-sm-9">
+            <%= form.file_field :pictures, for: "image", multiple: true, class: "form-control", autofocus: true, autocomplete: "image", placeholder: "upload image" %>
+          </div>
+        </div> 
+          <div class="form-group row">
+        <%= form.label :image,"Menu Images:", for: "image", class:"col-sm-3 col-form-label"%>
+          <div class="col-sm-9">
+            <%= form.file_field :photos, for: "image", multiple: true, class: "form-control", autofocus: true, autocomplete: "image", placeholder: "upload image"%>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <div class="form-group row justify-content-center my-4">
+      <div class="col-2">
+        <strong><%= link_to "Back", :back, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
+      </div>
+      <div class="col-2">
+        <strong><%= form.submit "submit", class: "btn btn-primary btn-md btn-block my-2 my-sm-0"%></strong>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+

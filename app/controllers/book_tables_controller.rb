@@ -11,6 +11,7 @@ class BookTablesController < ApplicationController
       render "new"
     else
       redirect_to table_booked_path
+      flash[:success] = "Booked successfully!"
     end
   end
 

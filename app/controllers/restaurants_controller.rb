@@ -3,17 +3,15 @@ class RestaurantsController < ApplicationController
   before_action :require_user
   
   def index
-    @restaurants = Restaurant.all
+    @restaurant = Restaurant.all
   end
 
   def new
     @restaurant = Restaurant.new
-    @restaurant_category = RestaurantCategory.all
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant_category = RestaurantCategory.all
 
     unless @restaurant.save
       render "new"
@@ -29,7 +27,6 @@ class RestaurantsController < ApplicationController
   
   def edit
     @restaurant = Restaurant.find(params[:id])
-    @restaurant_category = RestaurantCategory.all
   end
 
   def update
@@ -52,7 +49,7 @@ class RestaurantsController < ApplicationController
 
   private
     def restaurant_params
-      params.require(:restaurant).permit(:restaurant_name, :address, :email, :phone_no, :table_price, :image, :restaurant_category_id)
+      params.require(:restaurant).permit(:restaurant_name, :address, :email, :phone_no, :table_price, :image, :restaurant_category_id, files: [], pictures: [], photos: [])
     end
 
 end
