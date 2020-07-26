@@ -1,33 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div class="text-right col-md-12 bg-white border-bottom border-secondary mb-2">
+  <strong><%= link_to "Back", users_path, class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "Add Review", new_review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %><strong>
+  <strong><%= link_to "See Reviews", review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "Menu", menu_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "Online order", menu_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "Book table", new_book_table_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
+</div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <strong><%= link_to "Back", users_path, class: "nav-link" %></strong>
-      </li>
-      <li class="nav-item">
-        <strong><%= link_to "Menu", menu_path(restaurant: @restaurant.id), class: "nav-link" %></strong>
-      </li>
-      <li class="nav-item">
-        <strong><%= link_to "Online order", menu_path(restaurant: @restaurant.id), class: "nav-link" %></strong>
-      </li>
-      <li class="nav-item">
-        <strong><%= link_to "Book table", new_book_table_path(restaurant: @restaurant.id), class: "nav-link" %></strong>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Review", new_review_path(restaurant: @restaurant.id), class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %>
-      </li>
-    </ul>
-  <div>
-</nav>
+<section>
   <div class="row">
-    <div class="image col-4 mb-4">
+    <div class="image col-md-4 mb-4">
         <%= image_tag @restaurant.image.url %>
     </div>
-    <div class="card-deck text-left col-8">
+    <div class="card-deck text-left col-md-8">
       <div class="card mb-4 shadow-sm">
         <div class="card-header text-danger">
           <span><%= @restaurant.restaurant_name %></span>
@@ -45,17 +30,61 @@
       </div>
     </div>
   </div>
- <div class="row">
-  <div class="col-md-12">
- <% @restaurant.food_uploads.each do |image| %>
-    <div id="mdb-lightbox-ui"></div>
-    <div class="mdb-lightbox">
-      <figure class="col-md-4 float-left">
-          <%= image_tag image.image.url, alt: "picture", src: "https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg", class: "img-fluid"%>
-      </figure>
+</section>
+
+<section class="mb-4">
+  <h4 class="border-bottom border-secondary d-inline">Food Images</h4>
+  <% unless !@restaurant.food_uploads.first %>
+    <div class="row">
+      <% @restaurant.food_uploads.each do |image| %>
+        <div class="col-2">
+          <figure>
+              <%= image_tag image.image.url, alt: "picture", src: "https://mdbootstrap.com/img/Photos/divghtbox/Thumbnail/img%20(145).jpg", class: "img-fluid"%>
+          </figure>
+        </div>
+      <% end %>
     </div>
-  </div>
+  <% else %>
+    <h6>:No images </h4>
   <% end %>
-</div>
-</div>
+</section>
+
+<section class="mb-4">
+  <h4 class="border-bottom border-secondary d-inline">Menu Images</h4>
+  <% unless !@restaurant.menu_uploads.first %>
+    <div class="row">
+      <% @restaurant.menu_uploads.each do |image| %>
+        <div class="col-2">
+          <figure>
+              <%= image_tag image.image.url, alt: "picture", src: "https://mdbootstrap.com/img/Photos/divghtbox/Thumbnail/img%20(145).jpg", class: "img-fluid"%>
+          </figure>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h6>:No images </h4>
+  <% end %>
+</section>
+
+<section class="mb-4">
+  <h4 class="border-bottom border-secondary d-inline">Restaurant Images</h4>
+  <% unless !@restaurant.restaurant_uploads.first %>
+    <div class="row">
+      <% @restaurant.restaurant_uploads.each do |image| %>
+        <div class="col-2">
+          <figure>
+              <%= image_tag image.image.url, alt: "picture", src: "https://mdbootstrap.com/img/Photos/divghtbox/Thumbnail/img%20(145).jpg", class: "img-fluid"%>
+          </figure>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h6>:No images </h4>
+  <% end %>
+</section>
+
+<p>
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&center=#{@restaurant.latitude},#{@restaurant.longitude}&key=AIzaSyCT0nnhr-vrhyZ2t7i_3IwZwxy22qQM_sY", alt: "Map" %>
+</p>
+
 

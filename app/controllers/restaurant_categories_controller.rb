@@ -1,4 +1,7 @@
 class RestaurantCategoriesController < ApplicationController
+  before_action :require_user
+  before_action :require_admin
+  
   def new
     @category = RestaurantCategory.new
   end
@@ -13,6 +16,6 @@ class RestaurantCategoriesController < ApplicationController
       flash[:success] = "Category added successfully!"
       redirect_to new_restaurant_category_path
     end
-    
   end
+
 end

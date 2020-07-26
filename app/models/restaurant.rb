@@ -1,4 +1,6 @@
 class Restaurant < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   geocoded_by                       :address
   after_validation                  :geocode
   belongs_to                        :restaurant_category
@@ -16,11 +18,7 @@ class Restaurant < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   VALID_EMAIL_REGEX = 	/\A[\w+\-,]+@[a-z\d\-,]+\.[a-z]+\z/i
   validates                         :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
    
-
-
   def files=(array_of_files = [])
     array_of_files.each do |f|
       restaurant_uploads.build(image: f, restaurant: self)
@@ -38,5 +36,31 @@ class Restaurant < ApplicationRecord
       menu_uploads.build(image: f, restaurant: self)
     end
   end
+
+  settings do
+    mappings dynamic: false do
+      indexes :restaurant_name, type: :text, analyzer: :english
+      indexes :restaurant_category do
+        indexes :name, type: "text", analyzer: :english
+      end
+      indexes :food_items do
+        indexes :name, type: "text", analyzer: :english
+      end
+    end
+  end
+
+  def as_indexed_json(options = {})
+    self.as_json(
+      options.merge(only: [:restaurant_name],
+        include: {
+          restaurant_category: {only: :name},
+          food_items: {only: :name},
+        }
+      )
+    )
+  end
+
+
+  
 
 end

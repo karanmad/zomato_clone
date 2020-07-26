@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :require_user, only: [:destroy]
 
   def new
   redirect_to users_path if logged_in?
@@ -22,7 +23,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    flash[:success]="logged out successfully!"
+    flash[:success] = "logged out successfully!"
     redirect_to :root
   end
 

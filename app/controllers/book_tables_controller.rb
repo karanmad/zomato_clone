@@ -1,4 +1,6 @@
 class BookTablesController < ApplicationController
+  before_action :require_user
+  before_action :not_admin
 
   def new
     @restaurant = Restaurant.find(params[:restaurant])
@@ -16,11 +18,12 @@ class BookTablesController < ApplicationController
   end
 
   def show
-    @book_table = current_user.book_tables.last
+    @book_table ||= current_user.book_tables.last
   end
 
   private
-    def book_table_params
-      params.require(:book_table).permit(:restaurant_id, :heads, :date, :time)
-    end
+  def book_table_params
+    params.require(:book_table).permit(:restaurant_id, :heads, :date, :time)
+  end
+
 end

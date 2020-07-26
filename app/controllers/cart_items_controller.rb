@@ -1,7 +1,9 @@
 class CartItemsController < ApplicationController
+  before_action :require_user
+  before_action :not_admin
 
   def add
-    cart = get_cart.cart_items.new(cart_items_params)
+    cart = current_cart.cart_items.new(cart_items_params)
     require_same_restaurant
     unless cart.save
       flash[:danger] = "fooditem already added"
@@ -29,8 +31,8 @@ class CartItemsController < ApplicationController
   end
 
   private
-    def cart_items_params
-      params.require(:cart_item).permit(:food_item_id, :quantity)
-    end
+  def cart_items_params
+    params.require(:cart_item).permit(:food_item_id, :quantity)
+  end
 
 end

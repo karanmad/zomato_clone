@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :require_user
+  before_action :not_admin
+ 
   def create
     order = Order.new(order_params)
     if order.save
@@ -15,7 +18,6 @@ class OrdersController < ApplicationController
   end
   
   private
-
   def order_params
     params.require(:order).permit(:cart_id, :address)
   end

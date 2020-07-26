@@ -1,4 +1,6 @@
 class FoodItemsController < ApplicationController
+  before_action :set_food, only: [:edit, :update, :destroy]
+  before_action :require_user
   before_action :require_admin
   
   def index
@@ -22,13 +24,10 @@ class FoodItemsController < ApplicationController
   end
 
   def edit
-    @food_items = FoodItem.find(params[:id])
     @restaurant = Restaurant.all
   end
 
-  def update
-    @food_items = FoodItem.find(params[:id])
-  
+  def update 
     unless @food_items.update(items_params)
        render "edit"
     else
@@ -38,15 +37,18 @@ class FoodItemsController < ApplicationController
   end
 
   def destroy
-    food_items = FoodItem.find(params[:id])
     food_items.destroy
     flash[:success] = "food item is deleted successfully!"
     redirect_to food_items_path
   end
 
   private
-    def items_params
-      params.require(:food_item).permit(:name, :price, :restaurant_id)
-    end
+  def items_params
+    params.require(:food_item).permit(:name, :price, :restaurant_id)
+  end
+  
+  def set_food
+    @food_items = FoodItem.find(params[:id])
+  end
     
 end

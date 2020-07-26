@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
-  before_action :require_admin, except: [:index, :show] 
-  before_action :require_user
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :require_user , except: [:show]
+  before_action :require_admin, except: [:show]
   
   def index
     @restaurant = Restaurant.all
@@ -22,16 +23,12 @@ class RestaurantsController < ApplicationController
   end
   
   def show
-    @restaurant = Restaurant.find(params[:id])
   end
   
   def edit
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
-
     unless @restaurant.update(restaurant_params)
       render "edit"
     else
@@ -41,15 +38,18 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    restaurant = Restaurant.find(params[:id])
-    restaurant.destroy
+    @restaurant.destroy
     flash[:success] = "restaurant is deleted successfully!"
     redirect_to "/restaurants"
   end
 
   private
-    def restaurant_params
-      params.require(:restaurant).permit(:restaurant_name, :address, :email, :phone_no, :table_price, :image, :restaurant_category_id, files: [], pictures: [], photos: [])
-    end
+  def restaurant_params
+    params.require(:restaurant).permit(:restaurant_name, :address, :email, :phone_no, :table_price, :image, :restaurant_category_id, files: [], pictures: [], photos: [])
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
 
 end

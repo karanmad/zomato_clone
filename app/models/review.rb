@@ -1,6 +1,8 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
+  validates :feedback, :rating, presence: true
+  validates :rating, numericality: { only_integer: true}
   has_many :restaurant_uploads, dependent: :destroy
   has_many :food_uploads, dependent: :destroy
   has_many :menu_uploads, dependent: :destroy
@@ -10,7 +12,7 @@ class Review < ApplicationRecord
       restaurant_uploads.build(image: f, review: self, restaurant: restaurant)
     end
   end
-
+                                                                               
   def pictures=(array_of_pictures = [])
     array_of_pictures.each do |f|
       food_uploads.build(image: f, review: self, restaurant: restaurant)

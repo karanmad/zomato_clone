@@ -1,0 +1,28 @@
+<div class="col-8 mx-auto">
+  <div class="card">
+  <% unless !@review.first %>
+    <div class="card-header text-center">
+      <h4>All Reviews</h4>
+    </div>
+    <% @review.each do |review|%>
+      <div class="card-body border-bottom border-dark text-danger">
+        <span class="card-title d-block">user name : <%= review.user.Username %></span>
+        <span class="card-title d-block">Rating : <%= review.rating %></span>
+        <span class="card-title">Review : <%= review.feedback %></span>
+        <% unless current_user != review.user %>
+          <div class="row justify-content-center my-4">
+            <div class="col-4">
+              <strong><%= link_to "Edit", edit_review_path(review.id), class: "btn btn-primary btn-md btn-block my-2 my-sm-0" %></strong>
+            </div>
+            <div class="col-4">
+              <strong><%= link_to "Delete", review_path(review.id), class: "btn btn-danger btn-md btn-block my-2 my-sm-0", data: {method: :delete, confirm: "Are you sure!"} %></strong>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+   <h2 class="text-center text-danger"> No Review </h2>
+  <% end %>
+  </div>
+</div>

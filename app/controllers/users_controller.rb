@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :destroy]
   before_action :require_user, only: [:edit, :show]
   before_action :require_same_user, only: [:edit, :destroy]
   before_action :require_admin, only: [:destroy]
   
   def index
-    @restaurant = Restaurant.all
-    #@restaurant = Restaurant.search((params[:q].present? ? params[:q] : '*')).records
+    @restaurant = Restaurant.search(params[:q].present? ? params[:q] : '*').records
   end
   
   def new
@@ -36,35 +35,35 @@ class UsersController < ApplicationController
     unless @user.update(edit_profile)
       render "edit"
     else
-      render "show"
+      flash[:success] = "profile updated successfully!"
+      redirect_to user_path
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     flash[danger] = "user is deleted"
     redirect_to root_path
   end
 
   private  
-    def user_params
-      params.require(:user).permit(:Username, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:Username, :email, :password, :password_confirmation)
+  end
 
-    def edit_profile
-      params.require(:user).permit(:Username, :password, :password_confirmation)
-    end
+  def edit_profile
+    params.require(:user).permit(:Username, :password, :password_confirmation)
+  end
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def require_same_user
-      unless current_user == @user 
-        flash[:danger] = "You can edit your own account!"
-        redirect_to :error
-      end
+  def require_same_user
+    unless current_user == @user 
+      flash[:danger] = "You can edit your own account!"
+      redirect_to error_path
     end
+  end
     
 end
