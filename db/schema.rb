@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_233511) do
+ActiveRecord::Schema.define(version: 2020_07_27_114304) do
 
   create_table "book_tables", force: :cascade do |t|
     t.date "date"
@@ -140,6 +140,8 @@ ActiveRecord::Schema.define(version: 2020_07_25_233511) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.string "provider"
+    t.string "uid"
   end
 
   add_foreign_key "book_tables", "restaurants"

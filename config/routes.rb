@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
   get "logout" => "sessions#destroy"
+  get "auth/:provider/callback", to: "sessions#google_fb_create"
 
   get "request", to: "pages#approve"
   patch "request", to: "pages#approve_request"
