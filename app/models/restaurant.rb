@@ -18,7 +18,8 @@ class Restaurant < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   VALID_EMAIL_REGEX = 	/\A[\w+\-,]+@[a-z\d\-,]+\.[a-z]+\z/i
   validates                         :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
-   
+  after_save :reindex
+
   def files=(array_of_files = [])
     array_of_files.each do |f|
       restaurant_uploads.build(image: f, restaurant: self)
@@ -40,6 +41,7 @@ class Restaurant < ApplicationRecord
   settings do
     mappings dynamic: false do
       indexes :restaurant_name, type: :text, analyzer: :english
+      indexes :address, type: :text, analyzer: :english
       indexes :restaurant_category do
         indexes :name, type: "text", analyzer: :english
       end
@@ -51,7 +53,7 @@ class Restaurant < ApplicationRecord
 
   def as_indexed_json(options = {})
     self.as_json(
-      options.merge(only: [:restaurant_name],
+      options.merge(only: [:restaurant_name, :address],
         include: {
           restaurant_category: {only: :name},
           food_items: {only: :name},
@@ -60,7 +62,9 @@ class Restaurant < ApplicationRecord
     )
   end
 
-
+  def reindex
+   __elasticsearch__.index_document
+  end
   
 
 end

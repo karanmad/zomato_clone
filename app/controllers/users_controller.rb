@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :require_admin, only: [:destroy]
   
   def index
-    @restaurant = Restaurant.search(params[:q].present? ? params[:q] : '*').records
+    @restaurant = Restaurant.search(params[:q].present? ? params[:q] : '*').records.order("created_at ASC")
   end
   
   def new

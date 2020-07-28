@@ -1,25 +1,28 @@
 <%= form_tag(users_path, method: :get) do |f|%> 
   <div class="form-group row ml-5">
-    <div class="col-8">
-      <%= text_field_tag :q, params[:q], placeholder: "search restaurant by restaurant name, category and food", class: "form-control"%>
+    <div class="col-9">
+      <%= text_field_tag :q, params[:q], placeholder: "search restaurant by name, location, category and food", class: "form-control"%>
     </div>
     <div class="col-2">
       <%= submit_tag "Search", class: "btn btn-primary"%>
     </div>
   </div>
 <% end %>
+
 <% if @restaurant.blank? %>
   <h2 class="text-danger text-center">No Restaurant Found</h2>
 <% else %>
   <% @restaurant.each do |restaurant|%>
     <div class="row">
-      <div class="image col-4 mb-4">
-          <%= image_tag restaurant.image.url %>
+    <a class="btn col-4 mb-4" href="/restaurants/<%=restaurant.id %>%">
+      <div class="image">
+        <%= image_tag restaurant.image.url %>
       </div>
+    </a>
       <div class="card-deck mb-3 text-left col-8">
         <div class="card mb-4 shadow-sm">
           <div class="card-header">
-            <strong><%= link_to restaurant.restaurant_name, restaurant_path(restaurant.id), class: "btn btn-danger btn-md my-2 my-sm-0" %></strong>
+            <h3 class="text-danger"><%= restaurant.restaurant_name %></h3>
           </div>
           <div class="card-body">
             <h4><%= restaurant.restaurant_category.name %></small></h4>

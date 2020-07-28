@@ -1,0 +1,4 @@
+<p>
+  <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:large%7Ccolor:red%7C#{@restaurant.latitude},#{@restaurant.longitude}&key=AIzaSyDgIfgwEFu6vcXO33wzWYpbnQIAOjoKb7o", alt: "Map" %>
+</p>
+<h5><%= @restaurant.address %></h5>

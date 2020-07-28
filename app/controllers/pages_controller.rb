@@ -52,7 +52,11 @@ class PagesController < ApplicationController
     flash[:success] = "Review deleted succesfully!"
     redirect_to request_path
   end
-
+  
+  def map
+    @restaurant = Restaurant.find(params[:restaurant])
+  end
+  
   private
   def image_params
     params.require(:restaurant).permit(files: [], pictures: [], photos: [])

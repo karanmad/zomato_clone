@@ -1,5 +1,6 @@
 <div class="text-right col-md-12 bg-white border-bottom border-secondary mb-2">
   <strong><%= link_to "Back", users_path, class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "See Map", map_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
   <strong><%= link_to "Add Review", new_review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %><strong>
   <strong><%= link_to "See Reviews", review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
   <strong><%= link_to "Menu", menu_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
@@ -83,8 +84,6 @@
   <% end %>
 </section>
 
-<p>
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&center=#{@restaurant.latitude},#{@restaurant.longitude}&key=AIzaSyCT0nnhr-vrhyZ2t7i_3IwZwxy22qQM_sY", alt: "Map" %>
-</p>
+
 
 

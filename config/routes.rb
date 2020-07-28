@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "restaurant_list", to: "pages#index"
   get "upload_image", to: "pages#edit"
   patch "upload_image", to: "pages#update"
+  get "map", to: "pages#map"
 
   resources :restaurant_categories
 

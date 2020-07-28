@@ -37,7 +37,7 @@ class FoodItemsController < ApplicationController
   end
 
   def destroy
-    food_items.destroy
+    @food_items.destroy
     flash[:success] = "food item is deleted successfully!"
     redirect_to food_items_path
   end
