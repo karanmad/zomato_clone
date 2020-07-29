@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  before_action :set_review ,only: [:approve_request, :destroy]
+  before_action :set_review, only: [:approve_request, :destroy]
+  before_action :set_restaurant, only: [:edit, :update]
   before_action :require_user, only: [:edit, :update, :menu, :approve, :approve_request, :destroy]
   before_action :require_admin, only: [:edit, :update, :approve, :approve_request, :destroy]
 
@@ -15,12 +16,9 @@ class PagesController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:format])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:format])
-    
     unless params[:restaurant].nil?
       unless @restaurant.update(image_params)
         render "edit"
@@ -64,6 +62,10 @@ class PagesController < ApplicationController
  
   def set_review
     @review = Review.find(params[:format])
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:format])
   end
 
 end

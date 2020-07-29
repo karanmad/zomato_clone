@@ -1,13 +1,12 @@
 class RestaurantCategoriesController < ApplicationController
+  before_action :set_category, only: [:new, :create]
   before_action :require_user
   before_action :require_admin
   
   def new
-    @category = RestaurantCategory.new
   end
 
   def create
-    @category = RestaurantCategory.new
     @category.name = params[:restaurant_category][:name]
 
     unless @category.save
@@ -18,4 +17,9 @@ class RestaurantCategoriesController < ApplicationController
     end
   end
 
+  private
+  def set_category
+    @category = RestaurantCategory.new
+  end
+  
 end

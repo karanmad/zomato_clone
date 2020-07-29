@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+  before_action :set_cart, only: [:update, :destroy]
   before_action :require_user
   before_action :not_admin
 
@@ -14,7 +15,6 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item = CartItem.find(params[:id])
     unless @cart_item.update(cart_items_params)
       render cart_path
     else
@@ -24,7 +24,6 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
     flash[:success] = "food item successfully removed!"
     redirect_to cart_path
@@ -33,6 +32,10 @@ class CartItemsController < ApplicationController
   private
   def cart_items_params
     params.require(:cart_item).permit(:food_item_id, :quantity)
+  end
+
+  def set_cart
+    @cart_item = CartItem.find(params[:id])
   end
 
 end
