@@ -7,8 +7,7 @@ class CartItemsController < ApplicationController
     cart = current_cart.cart_items.new(cart_items_params)
     require_same_restaurant
     unless cart.save
-      flash[:danger] = "fooditem already added"
-      redirect_back(fallback_location: menu_path)
+      redirect_back fallback_location: menu_path , flash: { success: "fooditem already added!" }
     else
       redirect_back(fallback_location: menu_path)
     end
@@ -18,18 +17,17 @@ class CartItemsController < ApplicationController
     unless @cart_item.update(cart_items_params)
       render cart_path
     else
-      flash[:success] = "cart item updated!"
-      redirect_to cart_path
+      redirect_to cart_path, flash: { success: "cartitem updated successfully!" }
     end
   end
 
   def destroy
     @cart_item.destroy
-    flash[:success] = "food item successfully removed!"
-    redirect_to cart_path
+    redirect_to cart_path, flash: { success: "fooditem is removed successfully!" }
   end
 
   private
+
   def cart_items_params
     params.require(:cart_item).permit(:food_item_id, :quantity)
   end

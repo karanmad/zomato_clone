@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      flash[:success]="logged in successfully!"
-      redirect_to :root
+      redirect_to :root, flash: { success: "logged in successfully!" }
     else
       unless !user
         flash[:errors] = ["Wrong Password!"]
@@ -23,14 +22,13 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    flash[:success] = "logged out successfully!"
-    redirect_to :root
+    redirect_to :root, flash: { success: "logged out successfully!" }
   end
 
   def google_fb_create
     user = User.find_or_create_from_auth_hash(request.env["omniauth.auth"])
     session[:user_id] = user.id
-    redirect_to root_path
-    flash[:success] = "logged in successfully"
+    redirect_to root_path, flash: { success: "logged in successfully!" }
   end
+  
 end

@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
-  validates :feedback, :rating, presence: true
+  validates :feedback, :rating, presence: true, numericality: { only_integer: true}
   validates :rating, numericality: { only_integer: true}
   has_many :restaurant_uploads, dependent: :destroy
   has_many :food_uploads, dependent: :destroy

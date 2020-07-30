@@ -3,4 +3,5 @@ class ApplicationController < ActionController::Base
   include CartsHelper
   include RestaurantsHelper
   include OrdersHelper
+  
 end

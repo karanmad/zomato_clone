@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_review, only: [:approve_request, :destroy]
-  before_action :set_restaurant, only: [:edit, :update]
+  before_action :set_review ,only: [:approve_request, :destroy]
   before_action :require_user, only: [:edit, :update, :menu, :approve, :approve_request, :destroy]
   before_action :require_admin, only: [:edit, :update, :approve, :approve_request, :destroy]
 
@@ -16,15 +15,17 @@ class PagesController < ApplicationController
   end
 
   def edit
+    @restaurant = Restaurant.find(params[:format])
   end
 
   def update
+    @restaurant = Restaurant.find(params[:format])
+    
     unless params[:restaurant].nil?
       unless @restaurant.update(image_params)
         render "edit"
       else
-        flash[:success] = "Image is successfully uploaded!"
-        redirect_to restaurant_list_path
+        redirect_to restaurant_list_path, flash: { success: "Image is successfully uploaded!" }
       end
     else
       flash[:danger] = "you have not selected anything!"
@@ -33,22 +34,20 @@ class PagesController < ApplicationController
   end
 
   def approve
-   @review = Review.where(approve: false).all
+    @review = Review.where(approve: false).all
   end
 
   def approve_request
     unless @review.update(approve: "true")
       render "approve"
     else
-      flash[:success] = "Approved successfully!"
-      redirect_to request_path
+      redirect_to request_path, flash: { success: "Approved successfully!" }
     end
   end
 
   def destroy
     @review.destroy
-    flash[:success] = "Review deleted succesfully!"
-    redirect_to request_path
+    redirect_to request_path, flash: { success: "review deleted successfully!" }
   end
   
   def map
@@ -62,10 +61,6 @@ class PagesController < ApplicationController
  
   def set_review
     @review = Review.find(params[:format])
-  end
-
-  def set_restaurant
-    @restaurant = Restaurant.find(params[:format])
   end
 
 end

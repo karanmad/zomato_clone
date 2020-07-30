@@ -12,8 +12,7 @@ class BookTablesController < ApplicationController
     unless @book_table.save
       render "new"
     else
-      redirect_to table_booked_path
-      flash[:success] = "Booked successfully!"
+      redirect_to table_booked_path, flash: { success: "Booked successfully!" }
     end
   end
 
@@ -22,6 +21,7 @@ class BookTablesController < ApplicationController
   end
 
   private
+  
   def book_table_params
     params.require(:book_table).permit(:restaurant_id, :heads, :date, :time)
   end

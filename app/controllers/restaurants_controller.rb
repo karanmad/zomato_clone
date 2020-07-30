@@ -17,8 +17,7 @@ class RestaurantsController < ApplicationController
     unless @restaurant.save
       render "new"
     else
-      flash[:success] = "restaurant is successfully created!"
-      redirect_to new_restaurant_path
+      redirect_to new_restaurant_path, flash: { success: "restaurant is created successfully!" }
     end
   end
   
@@ -32,18 +31,17 @@ class RestaurantsController < ApplicationController
     unless @restaurant.update(restaurant_params)
       render "edit"
     else
-      flash[:success] = "restaurant is successfully updated!"
-      redirect_to "/restaurants"
+      redirect_to "/restaurants", flash: { success: "Restaurant is updated successfully!" }
     end
   end
 
   def destroy
     @restaurant.destroy
-    flash[:success] = "restaurant is deleted successfully!"
-    redirect_to "/restaurants"
+    redirect_to "/restaurants", flash: { success: "Restaurant is deleted successfully!" }
   end
 
   private
+  
   def restaurant_params
     params.require(:restaurant).permit(:restaurant_name, :address, :email, :phone_no, :table_price, :image, :restaurant_category_id, files: [], pictures: [], photos: [])
   end

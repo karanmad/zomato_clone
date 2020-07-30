@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update]
   before_action :require_user, only: [:edit, :show]
-  before_action :require_same_user, only: [:edit, :destroy]
+  before_action :require_same_user, only: [:edit]
   before_action :require_admin, only: [:destroy]
   
   def index
@@ -18,8 +18,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = "logged in successfully!"
-      redirect_to :root
+      redirect_to :root, flash: { success: "logged in successfully!" }
     else
       render "new"
     end
@@ -35,18 +34,12 @@ class UsersController < ApplicationController
     unless @user.update(edit_profile)
       render "edit"
     else
-      flash[:success] = "profile updated successfully!"
-      redirect_to user_path
+      redirect_to user_path, flash: { success: "profile updated successfully!" }
     end
   end
 
-  def destroy
-    @user.destroy
-    flash[danger] = "user is deleted"
-    redirect_to root_path
-  end
-
   private  
+  
   def user_params
     params.require(:user).permit(:Username, :email, :password, :password_confirmation)
   end

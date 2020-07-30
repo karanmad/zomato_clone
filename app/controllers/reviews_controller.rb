@@ -12,11 +12,9 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     
     unless @review.save
-      flash[:danger] = "check the inputs!"
-      redirect_back(fallback_location: menu_path)
+      redirect_back fallback_location: new_review_path, flash: { danger:  "check the inputs!" }
     else
-      redirect_to restaurant_path(@review.restaurant_id)
-      flash[:success] = "Thanks for giving review!"
+      redirect_to restaurant_path(@review.restaurant_id), flash: { success: "Thanks for giving review!" }
     end
   end
   
@@ -29,22 +27,20 @@ class ReviewsController < ApplicationController
 
   def update
     unless @review.update(review_edit_params)
-      flash[:danger] = "check the inputs!"
-      redirect_back(fallback_location: edit_review_path)
+      redirect_back fallback_location: edit_review_path,  flash: { danger:  "check the inputs!" }
     else
-      flash[:success] = "updated succesfully!"
-      redirect_to review_path(restaurant: @review.restaurant.id)
+      redirect_to review_path(restaurant: @review.restaurant.id), flash: { success: "review updated succesfully!"}
     end
   end
   
   def destroy
     @restaurant = @review.restaurant
     @review.destroy
-    flash[:success] = "review deleted succesfully!"
-    redirect_to review_path(restaurant: @restaurant.id)
+    redirect_to review_path(restaurant: @restaurant.id), flash: { success: "review deleted succesfully!"}
   end
 
   private
+
   def review_params
     params.require(:review).permit(:restaurant_id, :rating, :feedback, files: [], pictures: [], photos: [])
   end

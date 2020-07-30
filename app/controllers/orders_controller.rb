@@ -6,8 +6,7 @@ class OrdersController < ApplicationController
     order = Order.new(order_params)
     if order.save
       place_order
-      flash[:success] = "Order is successfully placed!"
-      redirect_to order_show_path
+      redirect_to order_show_path, flash: { success: "Order is placed successfully!" }
     else
       render cart_path      
     end
@@ -18,6 +17,7 @@ class OrdersController < ApplicationController
   end
   
   private
+  
   def order_params
     params.require(:order).permit(:cart_id, :address)
   end

@@ -18,8 +18,7 @@ class FoodItemsController < ApplicationController
     unless @food_items.save
       render "new"
     else 
-      flash[:success] = "food item create successfully!"
-      redirect_to food_items_path
+      redirect_to food_items_path, flash: { success: "fooditem is created successfully!" }
     end 
   end
 
@@ -31,18 +30,17 @@ class FoodItemsController < ApplicationController
     unless @food_items.update(items_params)
        render "edit"
     else
-      flash[:success] = "food item is  updated succesfully!"
-      redirect_to food_items_path
+      redirect_to food_items_path, flash: { success: "fooditem is updated successfully!" }
     end
   end
 
   def destroy
     @food_items.destroy
-    flash[:success] = "food item is deleted successfully!"
-    redirect_to food_items_path
+    redirect_to food_items_path, flash: { success: "fooditem is deleted successfully!" }
   end
 
   private
+  
   def items_params
     params.require(:food_item).permit(:name, :price, :restaurant_id)
   end
