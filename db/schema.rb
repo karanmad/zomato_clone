@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
     t.time "time"
     t.integer "heads"
     t.integer "user_id", null: false
-    t.integer "restaurant_id", null: false
+    t.integer "restaurant_id", null: false 
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_book_tables_on_restaurant_id"

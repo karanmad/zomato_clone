@@ -29,6 +29,15 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
+gem 'font-awesome-rails'
+gem "geocoder"
+gem 'hirb'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "paperclip", "~> 6.0.0"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -53,11 +62,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'hirb'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem "paperclip", "~> 6.0.0"
-gem "geocoder"
-gem 'elasticsearch-rails'
-gem 'elasticsearch-model'
-gem 'font-awesome-rails'
+
+
+
