@@ -21,9 +21,9 @@ Rails.application.routes.draw do
 
   resources :restaurant_categories, only: [:new, :create]
   resources :food_items, except: [:show] 
-  resources :book_tables, only: [:new, :create, :index]
   resources :orders, only: [:create, :index] 
-  resources :carts, only: [:show]
+  get "cart", to: "carts#show"
+  resources :book_tables, only: [:new, :create, :index]
 
   resources :cart_items, only: [:update, :destroy] do
     post "add", on: :collection

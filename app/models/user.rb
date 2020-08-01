@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_secure_password
   NAME_FORMAT = /\A(?=.* )[^0-9`!@#\\\$%\^&*\;+_=]{4,}/x
   before_save { self.email = email.downcase }
-  VALID_EMAIL_REGEX = 	/\A[\w+\-,]+@[a-z\d\-,]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = 	/\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/
   PASSWORD_FORMAT = /\A
   (?=.{6,})          # Must contain 8 or more characters
   (?=.*\d)           # Must contain a digit

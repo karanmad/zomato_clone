@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
     t.time "time"
     t.integer "heads"
     t.integer "user_id", null: false
-    t.integer "restaurant_id", null: false 
+    t.integer "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_book_tables_on_restaurant_id"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.boolean "final", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.boolean "final", default: false
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -53,35 +53,35 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
 
   create_table "food_uploads", force: :cascade do |t|
     t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "review_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_food_uploads_on_restaurant_id"
     t.index ["review_id"], name: "index_food_uploads_on_review_id"
   end
 
   create_table "menu_uploads", force: :cascade do |t|
     t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "review_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_menu_uploads_on_restaurant_id"
     t.index ["review_id"], name: "index_menu_uploads_on_review_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.text "address"
-    t.integer "cart_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "cart_id", null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
@@ -93,13 +93,13 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
 
   create_table "restaurant_uploads", force: :cascade do |t|
     t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "review_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_restaurant_uploads_on_restaurant_id"
     t.index ["review_id"], name: "index_restaurant_uploads_on_review_id"
   end
@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
     t.string "restaurant_name"
     t.text "address"
     t.text "phone_no"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "email"
     t.integer "restaurant_category_id"
     t.string "image_file_name"
@@ -117,8 +119,6 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
     t.decimal "table_price"
     t.float "longitude"
     t.float "latitude"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -126,9 +126,9 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
     t.text "feedback"
     t.integer "user_id", null: false
     t.integer "restaurant_id", null: false
-    t.boolean "approve", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "approve", default: false
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -137,11 +137,11 @@ ActiveRecord::Schema.define(version: 2020_07_27_114304) do
     t.string "Username"
     t.string "email"
     t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
     t.string "provider"
     t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "book_tables", "restaurants"
