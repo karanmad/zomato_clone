@@ -12,12 +12,12 @@ class BookTablesController < ApplicationController
     unless @book_table.save
       render "new"
     else
-      redirect_to table_booked_path, flash: { success: "Booked successfully!" }
+      redirect_to book_tables_path, flash: { success: "Booked successfully!" }
     end
   end
 
-  def show
-    @book_table ||= current_user.book_tables.last
+  def index
+    @book_table ||= current_user.book_tables.all.reverse
   end
 
   private

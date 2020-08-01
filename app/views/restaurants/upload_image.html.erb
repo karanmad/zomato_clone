@@ -14,7 +14,7 @@
           </ul>
         </div>
         <% end %>
-        <%= form_for @restaurant, url: upload_image_path(@restaurant.id) do |form| %>
+        <%= form_for @restaurant, url: upload_restaurant_path(@restaurant.id) do |form| %>
           <h5>*[Optional field, Multiple image can be selected]</h5> 
           <div class="form-group row">
             <%= form.label :image,"Restaurant Images:", for: "image", class:"col-sm-3 col-form-label"%>
@@ -36,10 +36,10 @@
           </div>  
           <div class="row justify-content-center">
             <div class="col-2">
-              <strong><%= link_to "BACK", restaurant_list_path, class: "btn btn-danger btn-lg btn-block my-2 my-sm-0" %></strong>
+              <strong><%= link_to "BACK", list_restaurants_path, class: "btn btn-danger btn-lg btn-block my-2 my-sm-0" %></strong>
             </div>
             <div class="col-2">
-              <strong><%= form.submit "CREATE", class:"btn btn-primary btn-lg btn-block my-2 my-sm-0" %></strong>
+              <strong><%= form.submit "Upload", class:"btn btn-primary btn-lg btn-block my-2 my-sm-0" %></strong>
             </div>
           </div>
         <% end %>

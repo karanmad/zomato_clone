@@ -7,18 +7,18 @@ class PagesController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant])
   end
   
-  def show
+  def error
   end
   
-  def index
+  def all_restaurants
     @restaurant = Restaurant.all
   end
 
-  def edit
+  def upload_image
     @restaurant = Restaurant.find(params[:format])
   end
 
-  def update
+  def upload_image
     @restaurant = Restaurant.find(params[:format])
     
     unless params[:restaurant].nil?
@@ -33,7 +33,7 @@ class PagesController < ApplicationController
     end
   end
 
-  def approve
+  def request
     @review = Review.where(approve: false).all
   end
 
@@ -45,16 +45,15 @@ class PagesController < ApplicationController
     end
   end
 
-  def destroy
+  def reject_review
     @review.destroy
     redirect_to request_path, flash: { success: "review deleted successfully!" }
   end
   
-  def map
-    @restaurant = Restaurant.find(params[:restaurant])
-  end
+  
   
   private
+  
   def image_params
     params.require(:restaurant).permit(files: [], pictures: [], photos: [])
   end

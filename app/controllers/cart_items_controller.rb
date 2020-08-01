@@ -5,11 +5,12 @@ class CartItemsController < ApplicationController
 
   def add
     cart = current_cart.cart_items.new(cart_items_params)
+    restaurant ||= cart.food_item.restaurant_id
     require_same_restaurant
     unless cart.save
-      redirect_back fallback_location: menu_path , flash: { success: "fooditem already added!" }
+      redirect_back fallback_location: menu_restaurant_path(restaurant), flash: { success: "fooditem already added!" }
     else
-      redirect_back(fallback_location: menu_path)
+      redirect_back(fallback_location: menu_restaurant_path(restaurant))
     end
   end
 

@@ -1,10 +1,10 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
-  before_action :require_user , except: [:show]
-  before_action :require_admin, except: [:show]
+  before_action :set_all_restaurant, only: [:index, :list]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :map, :upload_image, :upload, :menu]
+  before_action :require_user , except: [:show, :map, :menu]
+  before_action :require_admin, except: [:show, :map, :menu]
   
   def index
-    @restaurant = Restaurant.all
   end
 
   def new
@@ -40,6 +40,32 @@ class RestaurantsController < ApplicationController
     redirect_to "/restaurants", flash: { success: "Restaurant is deleted successfully!" }
   end
 
+  def map
+  end
+
+  def list
+  end
+
+  def upload_image
+  end
+
+  def upload 
+    unless params[:restaurant].nil?
+      unless @restaurant.update(restaurant_params)
+        render "upload_image"
+      else
+        redirect_to list_restaurants_path, flash: { success: "Image is successfully uploaded!" }
+      end
+    else
+      flash[:danger] = "you have not selected anything!"
+      render "upload_image"
+    end
+  end
+
+
+  def menu
+  end
+
   private
   
   def restaurant_params
@@ -48,6 +74,10 @@ class RestaurantsController < ApplicationController
 
   def set_restaurant
     @restaurant = Restaurant.find(params[:id])
+  end
+  
+  def set_all_restaurant
+    @restaurant = Restaurant.all
   end
 
 end

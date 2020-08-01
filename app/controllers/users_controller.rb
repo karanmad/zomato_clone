@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    unless @user.update(edit_profile)
+    unless @user.update(user_params)
       render "edit"
     else
       redirect_to user_path, flash: { success: "profile updated successfully!" }
@@ -42,10 +42,6 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:Username, :email, :password, :password_confirmation)
-  end
-
-  def edit_profile
-    params.require(:user).permit(:Username, :password, :password_confirmation)
   end
 
   def set_user

@@ -1,8 +1,9 @@
 class ReviewsController < ApplicationController
   before_action :set_restaurant, only: [:new, :show]
-  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_review, only: [:edit, :update, :destroy, :approve_request, :reject]
   before_action :require_user, except: [:show]
   before_action :not_admin, only: [:new, :create]
+  before_action :require_admin, only: [:unapprove, :approve_request, :reject]
 
   def new
     @review = Review.new  
@@ -14,7 +15,7 @@ class ReviewsController < ApplicationController
     unless @review.save
       redirect_back fallback_location: new_review_path, flash: { danger:  "check the inputs!" }
     else
-      redirect_to restaurant_path(@review.restaurant_id), flash: { success: "Thanks for giving review!" }
+      redirect_to restaurant_path(@review.restaurant_id), flash: { success: "Thanks for giving review, your review is send to admin for approval!" }
     end
   end
   
@@ -26,10 +27,11 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    unless @review.update(review_edit_params)
+    unless @review.update(review_params)
       redirect_back fallback_location: edit_review_path,  flash: { danger:  "check the inputs!" }
     else
-      redirect_to review_path(restaurant: @review.restaurant.id), flash: { success: "review updated succesfully!"}
+      unset_review
+      redirect_to review_path(restaurant: @review.restaurant.id), flash: { success: "review updated and sent for approval!"}
     end
   end
   
@@ -39,14 +41,27 @@ class ReviewsController < ApplicationController
     redirect_to review_path(restaurant: @restaurant.id), flash: { success: "review deleted succesfully!"}
   end
 
+  def unapprove
+    @review = Review.where(approve: false).all
+  end
+
+  def approve_request
+    unless !!approve_review
+      render "unapprove"
+    else
+      redirect_to unapprove_reviews_path, flash: { success: "Approved successfully!" } 
+    end
+  end
+
+  def reject
+    @review.destroy
+    redirect_to unapprove_reviews_path, flash: { success: "review rejected!" }
+  end
+  
   private
 
   def review_params
     params.require(:review).permit(:restaurant_id, :rating, :feedback, files: [], pictures: [], photos: [])
-  end
-
-  def review_edit_params
-    params.require(:review).permit(:rating, :feedback)
   end
 
   def set_review

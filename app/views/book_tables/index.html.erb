@@ -1,0 +1,67 @@
+<% unless !@book_table.first %>
+  <% @book_table.each do |book_table| %>
+    <div class="col-8 mx-auto my-4">    
+      <div class="card">
+        <div class="card-header text-center">
+          <h3>Booked Table at <%= book_table.created_at.strftime("%y:%M %D")%></h3>
+        </div>
+        
+        <div class="card-body text-left">
+          <div class="row mb-4">
+            <div class="col-sm-4">
+              <span>Restaurant Name</span>
+            </div>
+            <div class="col-sm-6">
+              <span>:<%= book_table.restaurant.restaurant_name%></span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-sm-4">
+              <span>Date of Booking</span>
+            </div>
+            <div class="col-sm-6">
+              <span>:<%= book_table.date %></span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-sm-4">
+              <span>Time Of Arrival</span>
+            </div>
+            <div class="col-sm-6">
+              <span>:<%= book_table.time.strftime("%I:%M %p")  %><span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-sm-4">
+              <span>Cost Per Head</span>
+            </div>
+            <div class="col-sm-6">
+              <span>:Rs.<%= book_table.restaurant.table_price %></span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-sm-4">
+              <span>Number Of Heads</span>
+            </div>
+            <div class="col-sm-6">
+              <span>:<%= book_table.heads %></span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-sm-4">
+              <span>Total</span>
+            </div>
+            <div class="col-sm-6">
+              <span>:Rs.<%= book_table.total %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="text-center text-danger mt-5">
+    <h2>No Booked Table</h2>
+  </div>
+<% end %>
+

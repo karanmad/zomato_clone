@@ -22,19 +22,19 @@ class Restaurant < ApplicationRecord
 
   def files=(array_of_files = [])
     array_of_files.each do |f|
-      restaurant_uploads.build(image: f, restaurant: self)
+      restaurant_uploads.create(image: f, restaurant: self)
     end
   end
 
   def pictures=(array_of_pictures = [])
     array_of_pictures.each do |f|
-      food_uploads.build(image: f, restaurant: self)
+      food_uploads.create(image: f, restaurant: self)
     end
   end
 
   def photos=(array_of_photos = [])
     array_of_photos.each do |f|
-      menu_uploads.build(image: f, restaurant: self)
+      menu_uploads.create(image: f, restaurant: self)
     end
   end
 
