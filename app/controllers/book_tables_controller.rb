@@ -10,7 +10,7 @@ class BookTablesController < ApplicationController
   def create
     @book_table = current_user.book_tables.new(book_table_params)
     unless @book_table.save
-      render "new"
+      redirect_back fallback_location: new_book_table_path, flash: { danger: "check inputs![date must be greater or equal to today date or no. of heads must be less or equal to 20]" }
     else
       redirect_to book_tables_path, flash: { success: "Booked successfully!" }
     end

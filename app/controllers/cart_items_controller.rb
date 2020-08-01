@@ -8,7 +8,7 @@ class CartItemsController < ApplicationController
     restaurant ||= cart.food_item.restaurant_id
     require_same_restaurant
     unless cart.save
-      redirect_back fallback_location: menu_restaurant_path(restaurant), flash: { success: "fooditem already added!" }
+      redirect_back fallback_location: menu_restaurant_path(restaurant), flash: { danger: "fooditem already added!" }
     else
       redirect_back(fallback_location: menu_restaurant_path(restaurant))
     end

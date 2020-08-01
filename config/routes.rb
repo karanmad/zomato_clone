@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   resources :restaurant_categories, only: [:new, :create]
   resources :food_items, except: [:show] 
   resources :orders, only: [:create, :index] 
-  get "cart", to: "carts#show"
   resources :book_tables, only: [:new, :create, :index]
 
   resources :cart_items, only: [:update, :destroy] do
@@ -36,7 +35,8 @@ Rails.application.routes.draw do
       delete "reject"
     end
   end
-
+  
+  get "cart", to: "carts#show"
   get "error", to: "carts#error"
 
 end
