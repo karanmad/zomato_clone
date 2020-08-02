@@ -37,6 +37,6 @@ Rails.application.routes.draw do
   end
   
   get "cart", to: "carts#show"
-  get "error", to: "carts#error"
+  get "error", to: "admin_dashboards#error"
 
 end

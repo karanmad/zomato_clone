@@ -18,11 +18,11 @@ class Restaurant < ApplicationRecord
   has_many :food_uploads, dependent: :destroy
   has_many :menu_uploads, dependent: :destroy
 
-  validates :restaurant_name, :address, :phone_no, :email, :table_price, presence: true
-  validates :phone_no, format: { with: VALID_PHONE_REGEX }
-  validates :table_price,  numericality: { greater_than_or_equal_to: 1 }
-  validates :restaurant_name, format: { with:  VALID_NAME_REGEX }, length: { maximum: 50, minimum: 2}
-  validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
+  validates :address, presence: true, length: { maximum: 200, minimum: 5}
+  validates :phone_no, presence: true, format: { with: VALID_PHONE_REGEX }
+  validates :table_price, presence: true,  numericality: { greater_than_or_equal_to: 1 }
+  validates :restaurant_name, presence: true, format: { with:  VALID_NAME_REGEX }, length: { maximum: 50, minimum: 2}
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
   
   
   has_attached_file :image
@@ -30,19 +30,19 @@ class Restaurant < ApplicationRecord
   
   def files=(array_of_files = [])
     array_of_files.each do |f|
-      restaurant_uploads.create(image: f, restaurant: self)
+      restaurant_uploads.build(image: f, restaurant: self)
     end
   end
 
   def pictures=(array_of_pictures = [])
     array_of_pictures.each do |f|
-      food_uploads.create(image: f, restaurant: self)
+      food_uploads.build(image: f, restaurant: self)
     end
   end
 
   def photos=(array_of_photos = [])
     array_of_photos.each do |f|
-      menu_uploads.create(image: f, restaurant: self)
+      menu_uploads.build(image: f, restaurant: self)
     end
   end
 

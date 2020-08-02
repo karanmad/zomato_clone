@@ -9,15 +9,7 @@
           <h1 class="title text-center">Update Food Item</h1>
           <% content_for :title, "Update Category" %>
         <% end %>
-        <% if @food_items.errors.any? %>          
-          <div class="alert alert-danger text-left">
-            <ul>
-              <% @food_items.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <%end%>
-            </ul>
-          </div>
-        <% end %>
+        <%= render "layouts/errors", obj: @food_items%>
         <%= form_for(@food_items) do |form| %>
           <div class="form-group row">
             <%= form.label :name,"Food Item Name :", for: "name", class:"col-sm-3 col-form-label"%>

@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :require_user
-  before_action :not_admin
+  before_action :only_user
  
   def create
     order = Order.new(order_params)

@@ -7,16 +7,6 @@
       </div>
       
       <div class="card-body text-right">
-        <% if flash[:errors] %>          
-          <div class="alert alert-danger text-left">
-            <ul>
-              <% flash[:errors].each do |msg| %>
-                <li><%= msg %></li>
-              <%end%>
-            </ul>
-          </div>
-        <% end %>
-
         <div class="form-group row">
           <%= form.label :email, for: "email", class:"col-sm-4 col-form-label"%>
           <div class="col-sm-6">

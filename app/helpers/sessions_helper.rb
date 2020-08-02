@@ -14,7 +14,7 @@ module SessionsHelper
     end
   end
 
-  def not_admin
+  def only_user
     unless logged_in? and !current_user.admin?
       redirect_to error_path, flash: { danger: "you must login in as user to perform this action" }
     end

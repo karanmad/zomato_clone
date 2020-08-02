@@ -1,16 +1,16 @@
 class CartItemsController < ApplicationController
   before_action :set_cart, only: [:update, :destroy]
   before_action :require_user
-  before_action :not_admin
+  before_action :only_user
 
   def add
     cart = current_cart.cart_items.new(cart_items_params)
     restaurant ||= cart.food_item.restaurant_id
     require_same_restaurant
     unless cart.save
-      redirect_back fallback_location: menu_restaurant_path(restaurant), flash: { danger: "fooditem already added!" }
+      redirect_to menu_restaurant_path(restaurant), flash: { danger: "fooditem already added!" }
     else
-      redirect_back(fallback_location: menu_restaurant_path(restaurant))
+      redirect_to menu_restaurant_path(restaurant), flash: { succes: "item added!" }
     end
   end
 

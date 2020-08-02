@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :book_tables, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
-  validates :password, format: { with: PASSWORD_FORMAT , message: "must contain a lower case character,a digit with minimum 6 characters."}
+  validates :password, presence: true, format: { with: PASSWORD_FORMAT , message: "must contain a lower case character,a digit with minimum 6 characters."}
   validates :Username, presence: true, format: { with:  VALID_NAME_REGEX }, length: { maximum: 25, minimum: 2}
   validates :email,presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
  

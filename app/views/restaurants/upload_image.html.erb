@@ -4,16 +4,7 @@
       <div class="card-body">
         <h1 class="title text-center">Upload Images</h1>
         <% content_for :title, "Upload Images" %>
-
-        <% if @restaurant.errors.any? %>          
-        <div class="alert alert-danger text-left">
-          <ul>
-            <% @restaurant.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <%end%>
-          </ul>
-        </div>
-        <% end %>
+        <%= render "layouts/errors", obj: @restaurant%>
         <%= form_for @restaurant, url: upload_restaurant_path(@restaurant.id) do |form| %>
           <h5>*[Optional field, Multiple image can be selected]</h5> 
           <div class="form-group row">

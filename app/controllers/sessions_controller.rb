@@ -12,11 +12,11 @@ class SessionsController < ApplicationController
       redirect_to :root, flash: { success: "logged in successfully!" }
     else
       unless !user
-        flash[:errors] = ["Wrong Password!"]
+        flash[:danger] = "Wrong Password!"
       else
-        flash[:errors] = ["Wrong Email!"]
+        flash[:danger] = "Wrong Email!"
       end
-      render "new"
+      redirect_to login_path
     end
   end
 

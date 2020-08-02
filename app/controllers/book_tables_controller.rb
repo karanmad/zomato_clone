@@ -1,16 +1,17 @@
 class BookTablesController < ApplicationController
+  before_action :set_restaurant, only: [:new, :create]
   before_action :require_user
-  before_action :not_admin
+  before_action :only_user
 
   def new
-    @restaurant = Restaurant.find(params[:restaurant])
     @book_table = BookTable.new
   end
 
   def create
     @book_table = current_user.book_tables.new(book_table_params)
+
     unless @book_table.save
-      redirect_back fallback_location: new_book_table_path, flash: { danger: "check inputs![date must be greater or equal to today date or no. of heads must be less or equal to 20]" }
+      render "new"
     else
       redirect_to book_tables_path, flash: { success: "Booked successfully!" }
     end
@@ -26,4 +27,7 @@ class BookTablesController < ApplicationController
     params.require(:book_table).permit(:restaurant_id, :heads, :date, :time)
   end
 
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:restaurant])
+  end
 end

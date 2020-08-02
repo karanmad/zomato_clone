@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_restaurant, only: [:new, :show]
   before_action :set_review, only: [:edit, :update, :destroy, :approve_request, :reject]
   before_action :require_user, except: [:show]
-  before_action :not_admin, only: [:new, :create]
+  before_action :only_user, only: [:new, :create]
   before_action :require_admin, only: [:unapprove, :approve_request, :reject]
 
   def new
@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     
     unless @review.save
-      redirect_back fallback_location: new_review_path, flash: { danger:  "check the inputs!" }
+      redirect_back fallback_location: new_review_path, flash: { danger:  "check the inputs![feedback minimum 2 chacters required" }
     else
       redirect_to restaurant_path(@review.restaurant_id), flash: { success: "Thanks for giving review, your review is send to admin for approval!" }
     end
@@ -28,7 +28,7 @@ class ReviewsController < ApplicationController
 
   def update
     unless @review.update(review_params)
-      redirect_back fallback_location: edit_review_path,  flash: { danger:  "check the inputs!" }
+      redirect_to edit_review_path,  flash: { danger:  "check the inputs!" }
     else
       unset_review
       redirect_to review_path(restaurant: @review.restaurant.id), flash: { success: "review updated and sent for approval!"}
