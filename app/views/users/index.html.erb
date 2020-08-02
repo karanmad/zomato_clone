@@ -14,7 +14,7 @@
 <% else %>
   <% @restaurant.each do |restaurant|%>
     <div class="row">
-    <a class="btn col-4 mb-4" href="/restaurants/<%=restaurant.id %>%">
+    <a class="btn col-4 mb-4" href="/restaurants/<%= restaurant.id %>%">
       <div class="image">
         <%= image_tag restaurant.image.url %>
       </div>

@@ -2,25 +2,22 @@
   <div class="col-6 mx-auto">    
     <div class="card">
       <div class="card-header text-center">
-        <h3>Edit Profile</h3>
+        <h3>edit Profile</h3>
       </div>
- 
       <div class="card-body text-right">
         <%= render "layouts/errors", obj: @user %>
         <div class="form-group row">
-          <%= form.label :change_username, for: "change_username", class:"col-sm-4 col-form-label" %>
+          <%= form.label :change_username, for: "username", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
             <%= form.text_field :Username, for: "password", class: "form-control", autofocus: true,  autocomplete: "Username", placeholder: "Enter Password", required: true %>
           </div>
         </div>
-
         <div class="form-group row">
-          <%= form.label :change_password, for: "change_password", class:"col-sm-4 col-form-label" %>
+          <%= form.label :password, for: "password", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
             <%= form.password_field :password, for: "password", class: "form-control", autocomplete: "current-password", placeholder: "Enter Password", required: true %>
           </div>
         </div>
-
         <div class="form-group row">
           <%= form.label :password_confirmation, for: "password_confirmation", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
@@ -31,13 +28,11 @@
     </div>
     <div class="row justify-content-center my-4">
       <div class="col-2">
-        <strong><%= link_to "Back", user_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
+        <strong><%= link_to "Back", root_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
       </div>
       <div class="col-2">
-        <strong><%= form.submit( "update",{ class: "btn btn-primary btn-md btn-block my-2 my-sm-0", data:{disable_with: "updating.."}})%></strong>
+        <strong><%= form.submit( "update",{ class: "btn btn-primary btn-md btn-block my-2 my-sm-0"})%></strong>
       </div>
     </div>
   </div>
 <% end %>
-
-

@@ -20,7 +20,6 @@ module CartsHelper
   def require_same_restaurant
     unless @cart.cart_items.first.food_item.restaurant_id == @cart.cart_items.last.food_item.restaurant_id
       @cart.cart_items.delete_all
-      flash[:warning] = "Previous cart items has been removed"
     end
   end
   
