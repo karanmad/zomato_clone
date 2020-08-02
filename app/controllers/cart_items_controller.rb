@@ -10,7 +10,7 @@ class CartItemsController < ApplicationController
     unless cart.save
       redirect_to menu_restaurant_path(restaurant), flash: { danger: "fooditem already added!" }
     else
-      redirect_to menu_restaurant_path(restaurant), flash: { succes: "item added!" }
+      redirect_to menu_restaurant_path(restaurant), flash: { success: "item added!" }
     end
   end
 

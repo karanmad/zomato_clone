@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params)
     
     unless @review.save
-      redirect_back fallback_location: new_review_path, flash: { danger:  "check the inputs![feedback minimum 2 chacters required" }
+      redirect_back fallback_location: new_review_path, flash: { danger:  "feedback must contain minimum 2 characters" }
     else
       redirect_to restaurant_path(@review.restaurant_id), flash: { success: "Thanks for giving review, your review is send to admin for approval!" }
     end
