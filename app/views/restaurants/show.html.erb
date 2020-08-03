@@ -1,13 +1,11 @@
 <div class="text-right col-md-12 bg-white border-bottom border-secondary mb-2">
   <strong><%= link_to "Back", users_path, class: "btn btn-white text-dark" %></strong>
   <strong><%= link_to "Menu", menu_restaurant_path, class: "btn btn-white text-dark" %></strong>
-  <% if !current_user.admin %>
-    <strong><%= link_to "Map", map_restaurant_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
-    <strong><%= link_to "Add Review", new_review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %><strong>
-    <strong><%= link_to "Reviews", review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
-    <strong><%= link_to "Online order", menu_restaurant_path, class: "btn btn-white text-dark" %></strong>
-    <strong><%= link_to "Book table", new_book_table_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
-  <% end %>
+  <strong><%= link_to "Map", map_restaurant_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "Add Review", new_review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %><strong>
+  <strong><%= link_to "Reviews", review_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "Online order", menu_restaurant_path, class: "btn btn-white text-dark" %></strong>
+  <strong><%= link_to "Book table", new_book_table_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
 </div>
 
 <section>

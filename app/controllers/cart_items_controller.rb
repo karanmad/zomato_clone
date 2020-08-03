@@ -16,7 +16,7 @@ class CartItemsController < ApplicationController
 
   def update
     unless @cart_item.update(cart_items_params)
-      render cart_path
+      redirect_to cart_path, flash: { danger: "quantity must be greater than 0 and less than equal to 2" }
     else
       redirect_to cart_path, flash: { success: "cartitem updated successfully!" }
     end

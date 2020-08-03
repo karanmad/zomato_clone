@@ -5,7 +5,6 @@ class CartItem < ApplicationRecord
   validates_uniqueness_of :food_item_id, scope: :cart_id
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 20 }
 
-
   def subtotal
     return food_item.price * quantity
   end
