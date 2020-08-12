@@ -15,11 +15,12 @@
     </div>
     <div class="card-deck text-left col-md-8">
       <div class="card mb-4 shadow-sm">
-        <div class="card-header text-danger">
-          <span><%= @restaurant.restaurant_name %></span>
+        <div class="card-header d-flex justify-content-between ">
+          <span class="text-danger"><%= @restaurant.name %></span>
+         <h6 class="text-dark">rating: <%= @restaurant.rating %></h6>
         </div>
-        <div class="card-body mt-4">
-          <h4><%= @restaurant.restaurant_category.name %></small></h4>
+        <div class="card-body mt-4 d-inline">
+          <h4><%= @restaurant.category.name %></small></h4>
           <ul class="list-unstyled text-muted mt-3 mb-4">
             <li>Table price:Rs.<%= @restaurant.table_price%></li>
             <li>Contact Details:</li>

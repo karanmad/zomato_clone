@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       get "list", on: :collection
   end
 
-  resources :restaurant_categories, only: [:new, :create]
+  resources :categories, only: [:new, :create]
   resources :food_items, except: [:show] 
   resources :orders, only: [:create, :index] 
   resources :book_tables, only: [:new, :create, :index]

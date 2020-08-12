@@ -12,7 +12,7 @@
     <% @restaurant.each_with_index do |restaurant,i| %>
     <tr>
       <td><%= i+1 %></td>
-      <td><%= restaurant.restaurant_name %></td>
+      <td><%= restaurant.name %></td>
       <td><%= restaurant.email %></td>
       <% unless["list"].include?(params[:action]) %>
         <td>

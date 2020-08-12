@@ -6,8 +6,8 @@
     </div>
     <% @review.each do |review|%>
       <div class="card-body border-bottom border-dark text-dark">
-        <span class="card-title d-block">For restaurant : <%= review.restaurant.restaurant_name %></span>
-        <span class="card-title d-block">user name : <%= review.user.Username %></span>
+        <span class="card-title d-block">For restaurant : <%= review.restaurant.name %></span>
+        <span class="card-title d-block">user name : <%= review.user.name %></span>
         <span class="card-title d-block">Rating : <%= review.rating %></span>
         <span class="card-title">Review : <%= review.feedback %></span>  
         <%= form_for review, url: approve_request_review_path(review.id) do |f|%>

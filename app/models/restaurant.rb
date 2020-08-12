@@ -10,7 +10,7 @@ class Restaurant < ApplicationRecord
   after_validation :geocode
   after_save :reindex
 
-  belongs_to :restaurant_category
+  belongs_to :category
   has_many :food_items, dependent: :destroy
   has_many :book_tables
   has_many :reviews, dependent: :destroy
@@ -21,7 +21,7 @@ class Restaurant < ApplicationRecord
   validates :address, presence: true, length: { maximum: 200, minimum: 5}
   validates :phone_no, presence: true, format: { with: VALID_PHONE_REGEX }
   validates :table_price, presence: true,  numericality: { greater_than_or_equal_to: 1 }
-  validates :restaurant_name, presence: true, format: { with:  VALID_NAME_REGEX }, length: { maximum: 50, minimum: 2}
+  validates :name, presence: true, format: { with:  VALID_NAME_REGEX }, length: { maximum: 50, minimum: 2}
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
   
   
@@ -50,7 +50,7 @@ class Restaurant < ApplicationRecord
     mappings dynamic: false do
       indexes :restaurant_name, type: :text, analyzer: :english
       indexes :address, type: :text, analyzer: :english
-      indexes :restaurant_category do
+      indexes :category do
         indexes :name, type: "text", analyzer: :english
       end
       indexes :food_items do
@@ -63,7 +63,7 @@ class Restaurant < ApplicationRecord
     self.as_json(
       options.merge(only: [:restaurant_name, :address],
         include: {
-          restaurant_category: {only: :name},
+          category: {only: :name},
           food_items: {only: :name},
         }
       )
@@ -74,5 +74,13 @@ class Restaurant < ApplicationRecord
    __elasticsearch__.index_document
   end
   
+  def rating
+    sum = reviews.where(approve: true).all.each.collect {|review| review.valid? ? review.rating : 0 }.sum
+    if sum > 0
+      return (sum/Float(reviews.where(approve: true).count)).round(1)
+    else
+      return 0
+    end
+  end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_214935) do
+ActiveRecord::Schema.define(version: 2020_08_10_223411) do
 
   create_table "book_tables", force: :cascade do |t|
     t.date "date", null: false
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "food_items", force: :cascade do |t|
@@ -85,12 +91,6 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
-  create_table "restaurant_categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "restaurant_uploads", force: :cascade do |t|
     t.integer "restaurant_id", null: false
     t.string "image_file_name"
@@ -105,11 +105,11 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string "restaurant_name", null: false
+    t.string "name", null: false
     t.text "address", null: false
     t.text "phone_no", null: false
     t.string "email", null: false
-    t.integer "restaurant_category_id"
+    t.integer "category_id", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
     t.float "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_restaurants_on_category_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -134,7 +135,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "Username", null: false
+    t.string "name", null: false
     t.string "email", null: false
     t.string "password_digest"
     t.boolean "admin", default: false
@@ -157,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
   add_foreign_key "orders", "carts"
   add_foreign_key "restaurant_uploads", "restaurants"
   add_foreign_key "restaurant_uploads", "reviews"
+  add_foreign_key "restaurants", "categories"
   add_foreign_key "reviews", "restaurants"
   add_foreign_key "reviews", "users"
 end

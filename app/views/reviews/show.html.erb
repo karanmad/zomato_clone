@@ -6,7 +6,7 @@
     </div>
     <% @review.each do |review|%>
       <div class="card-body border-bottom border-dark text-danger">
-        <span class="card-title d-block">user name : <%= review.user.Username %></span>
+        <span class="card-title d-block">user name : <%= review.user.name %></span>
         <span class="card-title d-block">Rating : <%= review.rating %></span>
         <span class="card-title">Review : <%= review.feedback %></span>
         <% unless current_user != review.user %>

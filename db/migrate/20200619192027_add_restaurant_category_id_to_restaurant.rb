@@ -1,5 +1,5 @@
 class AddRestaurantCategoryIdToRestaurant < ActiveRecord::Migration[6.0]
   def change
-    add_column :restaurants, :restaurant_category_id, :integer
+    add_reference :restaurants, :category, null: false, foreign_key: true 
   end
 end

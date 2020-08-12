@@ -1,5 +1,6 @@
 class FoodItemsController < ApplicationController
   before_action :set_food, only: [:edit, :update, :destroy]
+  before_action  :set_restaurant, only: [:new, :create, :edit]
   before_action :require_user
   before_action :require_admin
   
@@ -9,7 +10,6 @@ class FoodItemsController < ApplicationController
 
   def new
     @food_items = FoodItem.new
-    @restaurant = Restaurant.all
   end
 
   def create
@@ -23,7 +23,6 @@ class FoodItemsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.all
   end
 
   def update 
@@ -48,5 +47,9 @@ class FoodItemsController < ApplicationController
   def set_food
     @food_items = FoodItem.find(params[:id])
   end
-    
+
+  def set_restaurant
+    @restaurant ||= Restaurant.all
+  end 
+
 end
