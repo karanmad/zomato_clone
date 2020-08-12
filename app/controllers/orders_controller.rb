@@ -4,11 +4,15 @@ class OrdersController < ApplicationController
  
   def create
     order = Order.new(order_params)
-    if order.save
-      place_order
-      redirect_to orders_path, flash: { success: "Order is placed successfully!" }
+    if get_cart.cart_items.first
+      if order.save
+        place_order
+        redirect_to orders_path, flash: { success: "Order is placed successfully!" }
+      else
+        redirect_to cart_path, flash: { danger: "address length must be more than 5 charcters!" }   
+      end
     else
-      render cart_path      
+      redirect_to cart_path, flash: { danger: "Your cart is empty must select the items to order!" }
     end
   end  
 
