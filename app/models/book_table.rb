@@ -16,5 +16,5 @@ class BookTable < ApplicationRecord
   def total
     return restaurant.table_price * heads
   end
-
+  
 end

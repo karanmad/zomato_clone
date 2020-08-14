@@ -22,7 +22,7 @@ class Restaurant < ApplicationRecord
   validates :phone_no, presence: true, format: { with: VALID_PHONE_REGEX }
   validates :table_price, presence: true,  numericality: { greater_than_or_equal_to: 1 }
   validates :name, presence: true, format: { with:  VALID_NAME_REGEX }, length: { maximum: 50, minimum: 2}
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { :case_sensitive => false}
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, length: { maximum: 50, minimum: 8}, uniqueness: {case_sensitive: false}
   
   
   has_attached_file :image
@@ -48,7 +48,7 @@ class Restaurant < ApplicationRecord
 
   settings do
     mappings dynamic: false do
-      indexes :restaurant_name, type: :text, analyzer: :english
+      indexes :name, type: :text, analyzer: :english
       indexes :address, type: :text, analyzer: :english
       indexes :category do
         indexes :name, type: "text", analyzer: :english
@@ -61,7 +61,7 @@ class Restaurant < ApplicationRecord
 
   def as_indexed_json(options = {})
     self.as_json(
-      options.merge(only: [:restaurant_name, :address],
+      options.merge(only: [:name, :address],
         include: {
           category: {only: :name},
           food_items: {only: :name},

@@ -6,4 +6,5 @@ class Cart < ApplicationRecord
   def total
     cart_items.collect {|item| item.valid? ? item.subtotal : 0 }.sum
   end
+  
 end
