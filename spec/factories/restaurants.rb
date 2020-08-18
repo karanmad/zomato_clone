@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :restaurant do
     name { "any store" }
-    email { "any@gmail,com" }
+    email { Faker::Internet.email }
     address { "unknown address" }
     phone_no { "9852123456" }
     table_price { 500.0 }
@@ -11,7 +11,7 @@ FactoryBot.define do
 
   factory :restaurant2, class: Restaurant do
     name { "anything" }
-    email { "any1@gmail,com" }
+    email { Faker::Internet.email }
     address { "unknown address" }
     phone_no { "9852123450" }
     table_price { 500.0 }

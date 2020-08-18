@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :review do
+  factory :review, class: Review do
     rating { 4 }
     feedback { "something" }
     restaurant_id { 1 }
@@ -9,7 +9,7 @@ FactoryBot.define do
     user { create(:user) }
   end
 
-  factory :review_approved do
+  factory :review_approved, class: Review do
     rating { 4 }
     feedback { "sometnig" }
     restaurant_id { 1 }
@@ -18,4 +18,5 @@ FactoryBot.define do
     restaurant { create(:restaurant) }
     user { create(:user) }
   end
+
 end

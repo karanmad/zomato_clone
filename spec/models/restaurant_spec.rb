@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
-   subject(:restaurant) { FactoryBot.build(:restaurant) }
+   subject(:restaurant) { FactoryBot.create(:restaurant) }
+   let(:review)  { FactoryBot.create(:review_approved, restaurant_id: restaurant.id) }
 
   #validation 
   describe ".restaurant_name_presence" do
@@ -202,6 +203,17 @@ RSpec.describe Restaurant, type: :model do
 
   describe "belongs_to :category" do
     it { is_expected.to belong_to :category }  
+  end
+
+  #model_method
+  describe "#rating_of_restaurant" do
+    it "should return average rating" do
+      expect(review.rating).to eq(restaurant.rating)
+    end
+    it "should return zero rating" do
+      review.rating = 0
+      expect(0).to eq(restaurant.rating)
+    end
   end
 
 end

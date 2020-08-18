@@ -1,14 +1,14 @@
 FactoryBot.define do
-  factory :food_item do
+  factory :food_item, class: FoodItem do
     name { "fooditem" }
-    price { 100 }
+    price { 100.45 }
     restaurant_id { 1 }
     restaurant { create(:restaurant) }
   end
 
-  factory :food_item_2 do
+  factory :food_item_2, class: FoodItem do
     name { "fooditemas" }
-    price { 10 }
+    price { 100.45 }
     restaurant_id { 1 }
     restaurant { create(:restaurant) }
   end
