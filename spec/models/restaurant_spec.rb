@@ -211,8 +211,8 @@ RSpec.describe Restaurant, type: :model do
       expect(review.rating).to eq(restaurant.rating)
     end
     it "should return zero rating" do
-      review.rating = 0
-      expect(0).to eq(restaurant.rating)
+      restaurant.reviews.destroy_all
+      expect(restaurant.rating).to eq(0)
     end
   end
 
