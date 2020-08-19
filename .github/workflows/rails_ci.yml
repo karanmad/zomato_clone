@@ -1,0 +1,65 @@
+name: Ruby
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres
+        ports: ['5432:5432']
+        env:
+          POSTGRES_USER: root
+          POSTGRES_DB: zomato_ci_db
+          POSTGRES_PASSWORD: root
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      
+      elasticsearch:
+        image: elasticsearch:7.7.1
+        ports: ['9200:9200']
+        options: >-
+          -e="discovery.type=single-node" 
+          --health-cmd="curl http://localhost:9200/_cluster/health" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=10
+     
+
+    steps:  
+      - name: Setup ubuntu
+        run: |
+          sudo apt-get -yqq install libpq-dev
+          sudo apt-get update
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+
+      - name: Verify Elasticsearch connection from host
+        env:
+          ELASTIC_SEARCH_URL: http://localhost:${{ job.services.elasticsearch.ports[9200] }}
+        run: |
+          echo $ELASTIC_SEARCH_URL
+          curl -fsSL "$ELASTIC_SEARCH_URL/_cat/health?h=status"     
+          
+      - name: Checkout Code
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1  
+      
+      - name: Bundle Install, Create DB and Run tests
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          POSTGRES_USER: root
+          POSTGRES_DB: zomato_ci_db
+          POSTGRES_PASSWORD: root
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          cp config/database.ci.yml config/database.yml
+          bundle exec rails db:prepare --trace
+          bundle exec rspec
