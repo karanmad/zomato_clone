@@ -80,5 +80,4 @@ RSpec.describe Review, type: :model do
   describe "belongs_to :restaurant" do
     it { is_expected.to belong_to :restaurant }  
   end
-  
 end

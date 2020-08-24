@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :order do
     address { "unknown address" }
-    cart_id { 1 }
-    cart { create(:cart) }
+    cart_id { create(:cart).id }
   end
 end

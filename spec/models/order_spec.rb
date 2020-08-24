@@ -36,5 +36,4 @@ RSpec.describe Order, type: :model do
   describe "belongs_to :cart" do
     it { is_expected.to belong_to :cart }  
   end
-
 end

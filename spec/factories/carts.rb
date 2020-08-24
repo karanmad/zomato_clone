@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :cart, class: Cart do
-    user_id { 1 }
+    user_id { create(:user).id }
     final { false }
-    user { create(:user4) }
   end
 end

@@ -1,33 +1,12 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/karan/zomato_clone/app/models/cart_item.rb": {
+      "/app/app/models/cart_item.rb": {
         "lines": [
           1,
           1,
           1,
           null,
-          1,
-          1,
-          null,
-          1,
-          5,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/karan/zomato_clone/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/karan/zomato_clone/app/models/cart.rb": {
-        "lines": [
-          1,
-          1,
           1,
           1,
           null,
@@ -38,129 +17,60 @@
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/category.rb": {
+      "/app/app/models/application_record.rb": {
         "lines": [
           1,
           1,
-          null,
-          1,
-          1,
-          null,
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/food_item.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          8,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/karan/zomato_clone/app/models/restaurant.rb": {
+      "/app/app/models/cart.rb": {
         "lines": [
           1,
           1,
           1,
           1,
-          1,
-          1,
           null,
           1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          174,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          83,
-          null,
-          null,
-          1,
-          3,
           2,
-          1,
-          null,
-          1,
-          null,
           null,
           null,
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/review.rb": {
+      "/app/app/models/category.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/app/app/models/food_item.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          7,
+          null,
+          null,
+          null
+        ]
+      },
+      "/app/app/models/review.rb": {
         "lines": [
           1,
           1,
@@ -194,7 +104,7 @@
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/user.rb": {
+      "/app/app/models/user.rb": {
         "lines": [
           1,
           1,
@@ -226,7 +136,7 @@
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/book_table.rb": {
+      "/app/app/models/book_table.rb": {
         "lines": [
           1,
           1,
@@ -250,7 +160,7 @@
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/food_upload.rb": {
+      "/app/app/models/food_upload.rb": {
         "lines": [
           1,
           1,
@@ -261,7 +171,7 @@
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/menu_upload.rb": {
+      "/app/app/models/menu_upload.rb": {
         "lines": [
           1,
           1,
@@ -272,7 +182,7 @@
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/order.rb": {
+      "/app/app/models/order.rb": {
         "lines": [
           1,
           1,
@@ -281,7 +191,97 @@
           null
         ]
       },
-      "/home/karan/zomato_clone/app/models/restaurant_upload.rb": {
+      "/app/app/models/restaurant.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          171,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          82,
+          null,
+          null,
+          1,
+          3,
+          2,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/app/app/models/restaurant_upload.rb": {
         "lines": [
           1,
           1,
@@ -293,6 +293,6 @@
         ]
       }
     },
-    "timestamp": 1597834259
+    "timestamp": 1598252656
   }
 }

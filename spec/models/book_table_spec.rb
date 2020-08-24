@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BookTable, type: :model do
   subject(:book_table) { FactoryBot.build(:book_table) }
-  let(:restaurant) { FactoryBot.create(:restaurant2)} 
+  let(:restaurant) { FactoryBot.create(:restaurant)} 
 
   #VALIDATION
   describe ".number_of_heads_presence" do
@@ -57,13 +57,13 @@ RSpec.describe BookTable, type: :model do
   end
   
   #model_method
-  describe "#total_instance_method" do
+  describe "#total" do
     it "should return book table total" do
       expect((restaurant.table_price)*subject.heads).to eq(subject.total)
     end
   end
     
-  describe "#date_instance_method" do
+  describe "#date_cannot_be_in_the_past" do
     it "date must not be in past" do
       subject.date = Date.today
       expect(subject).to be_valid
@@ -73,5 +73,4 @@ RSpec.describe BookTable, type: :model do
       expect(subject).not_to be_valid
     end
   end
-
 end

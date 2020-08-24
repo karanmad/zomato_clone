@@ -49,6 +49,5 @@ RSpec.describe Category, type: :model do
   #association_test
   describe "has_many :restaurants" do
     it { is_expected.to have_many :restaurants }  
-  end
-  
+  end 
 end

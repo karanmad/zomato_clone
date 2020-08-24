@@ -149,7 +149,7 @@ RSpec.describe User, type: :model do
   end
 
   #instance method
-  describe "#from_omniauth" do
+  describe "#find_or_create_from_auth_hash" do
     context "with registered user" do
       it "using omniauth" do
         user = FactoryBot.create(:user, email: "something@facebook.com", provider: "facebook", uid: "12345678910")
@@ -170,5 +170,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
-  
 end

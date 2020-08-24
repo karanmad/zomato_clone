@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Cart, type: :model do
   subject(:cart) { FactoryBot.create(:cart) }
   let(:cart_item) { FactoryBot.create(:cart_item, cart_id: cart.id ) }
-  let(:cart_item_2) { FactoryBot.create(:cart_item_2, cart_id: cart.id) }
 
   
   #association
@@ -20,10 +19,9 @@ RSpec.describe Cart, type: :model do
   end
 
   #instance_method
-  describe "#total_instance_method" do
+  describe "#total" do
     it "should return cart total" do
-      expect(cart_item.subtotal + cart_item_2.subtotal).to eq(cart.total)
+      expect(cart_item.subtotal).to eq(cart.total)
     end
   end
-
 end

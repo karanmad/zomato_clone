@@ -27,10 +27,9 @@ RSpec.describe CartItem, type: :model do
   end
 
   #instance_method
-  describe "#instance_method_test" do 
+  describe "#subtotal" do 
     it "should return subtotal" do
       expect(cart_item.subtotal).to eq(food_item.price*cart_item.quantity)
     end
   end
-  
 end

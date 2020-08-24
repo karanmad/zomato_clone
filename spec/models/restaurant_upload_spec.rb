@@ -11,5 +11,4 @@ RSpec.describe RestaurantUpload, type: :model do
   describe "belongs_to :review" do
     it { is_expected.to belong_to(:review).optional }  
   end
-  
 end
