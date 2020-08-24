@@ -9,7 +9,7 @@
         <div class="form-group row">
           <%= form.label :name, for: "Name", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
-            <%= form.text_field :name, for: "password", class: "form-control", autofocus: true,  autocomplete: "Username", placeholder: "Enter Password", required: true %>
+            <%= form.text_field :name, for: "password", class: "form-control", autofocus: true,  autocomplete: "Username", placeholder: "Enter Name", required: true %>
           </div>
         </div>
 
@@ -28,7 +28,7 @@
         <div class="form-group row">
           <%= form.label :password_confirmation, for: "password_confirmation", class:"col-sm-4 col-form-label" %>
           <div class="col-sm-6">
-            <%= form.password_field :password_confirmation, for: "password_confirmation", class: "form-control", autocomplete: "current-password_confirmation", placeholder: "Enter Password", required: true %>
+            <%= form.password_field :password_confirmation, for: "password_confirmation", class: "form-control", autocomplete: "current-password_confirmation", placeholder: "confirm Password", required: true %>
           </div>
         </div>
       </div>

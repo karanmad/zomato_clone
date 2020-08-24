@@ -1,6 +1,9 @@
 development:
   adapter: postgresql
   encoding: unicode
+  host: db
+  username: postgres
+  password: password
   database: zomato_development
   pool: 5 
   timeout: 5000
@@ -8,6 +11,9 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
+  host: db
+  username: postgres
+  password: password
   database: zomato_production
   pool: 5
   timeout: 5000
@@ -15,6 +21,9 @@ production:
 test:
   adapter: postgresql
   encoding: unicode
+  host: db
+  username: postgres
+  password: password
   database: zomato_test
   pool: 5
   timeout: 5000
