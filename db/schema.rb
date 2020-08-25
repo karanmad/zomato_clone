@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_005820) do
 
   create_table "food_uploads", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
-    t.bigint "review_id", null: false
+    t.bigint "review_id"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_005820) do
 
   create_table "menu_uploads", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
-    t.bigint "review_id", null: false
+    t.bigint "review_id"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_005820) do
 
   create_table "restaurant_uploads", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
-    t.bigint "review_id", null: false
+    t.bigint "review_id"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"

@@ -3,7 +3,7 @@ class Restaurant < ApplicationRecord
   include Elasticsearch::Model::Callbacks
   VALID_PHONE_REGEX = /\A[6-9][0-9]{9}\z/
   VALID_NAME_REGEX = /\A[\sA-Za-z]*\z/i
-  VALID_EMAIL_REGEX = 	/\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/
+  VALID_EMAIL_REGEX = /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/
   geocoded_by :address
   after_validation :geocode
   after_save :reindex

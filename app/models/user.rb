@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  VALID_EMAIL_REGEX = 	/\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/
+  VALID_EMAIL_REGEX = /\A[^@\s]+@([^@.\s]+\.)*[^@.\s]+\z/
   VALID_NAME_REGEX = /\A[\sA-Za-z]*\z/i
   before_save { self.email = email.downcase }
   has_many :carts, dependent: :destroy
