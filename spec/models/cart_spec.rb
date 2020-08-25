@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Cart, type: :model do
   subject(:cart) { FactoryBot.create(:cart) }
   let(:cart_item) { FactoryBot.create(:cart_item, cart_id: cart.id ) }
-
   
   #association
   describe "has_many :cart_items" do

@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_214935) do
+ActiveRecord::Schema.define(version: 2020_08_25_005820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "book_tables", force: :cascade do |t|
-    t.date "date", null: false
-    t.time "time", null: false
-    t.integer "heads", null: false
     t.bigint "user_id", null: false
     t.bigint "restaurant_id", null: false
+    t.integer "heads", null: false
+    t.date "date", null: false
+    t.time "time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_book_tables_on_restaurant_id"
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "quantity", default: 1
-    t.bigint "food_item_id", null: false
     t.bigint "cart_id", null: false
+    t.bigint "food_item_id", null: false
+    t.integer "quantity", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
   end
 
   create_table "food_items", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
     t.string "name", null: false
     t.decimal "price", null: false
-    t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_food_items_on_restaurant_id"
@@ -62,11 +62,11 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
 
   create_table "food_uploads", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
+    t.bigint "review_id", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.bigint "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_food_uploads_on_restaurant_id"
@@ -75,11 +75,11 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
 
   create_table "menu_uploads", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
+    t.bigint "review_id", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.bigint "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_menu_uploads_on_restaurant_id"
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.text "address", null: false
     t.bigint "cart_id", null: false
+    t.text "address", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"
@@ -96,11 +96,11 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
 
   create_table "restaurant_uploads", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
+    t.bigint "review_id", null: false
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.bigint "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["restaurant_id"], name: "index_restaurant_uploads_on_restaurant_id"
@@ -108,28 +108,28 @@ ActiveRecord::Schema.define(version: 2020_08_02_214935) do
   end
 
   create_table "restaurants", force: :cascade do |t|
+    t.bigint "category_id", null: false
     t.string "name", null: false
     t.text "address", null: false
     t.text "phone_no", null: false
     t.string "email", null: false
-    t.bigint "category_id", null: false
+    t.decimal "table_price", null: false
+    t.float "longitude"
+    t.float "latitude"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.decimal "table_price", null: false
-    t.float "longitude"
-    t.float "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_restaurants_on_category_id"
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.bigint "user_id", null: false
     t.integer "rating", null: false
     t.text "feedback", null: false
-    t.bigint "user_id", null: false
-    t.bigint "restaurant_id", null: false
     t.boolean "approve", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

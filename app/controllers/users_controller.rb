@@ -53,6 +53,5 @@ class UsersController < ApplicationController
       flash[:danger] = "You can edit your own account!"
       redirect_to error_path
     end
-  end
-    
+  end   
 end

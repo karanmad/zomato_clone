@@ -20,6 +20,5 @@ class CategoriesController < ApplicationController
   
   def set_category
     @category = Category.new
-  end
-  
+  end  
 end

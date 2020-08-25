@@ -79,5 +79,4 @@ class RestaurantsController < ApplicationController
   def set_all_restaurant
     @restaurant = Restaurant.all
   end
-
 end

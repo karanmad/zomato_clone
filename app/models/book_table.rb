@@ -1,7 +1,6 @@
 class BookTable < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
-
   validates :heads, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 20 }
   validates :time, presence: true
   validates :date, presence: true
@@ -15,6 +14,5 @@ class BookTable < ApplicationRecord
 
   def total
     return restaurant.table_price * heads
-  end
-  
+  end 
 end

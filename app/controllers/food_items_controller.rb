@@ -51,5 +51,4 @@ class FoodItemsController < ApplicationController
   def set_restaurant
     @restaurant ||= Restaurant.all
   end 
-
 end

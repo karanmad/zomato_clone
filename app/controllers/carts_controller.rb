@@ -7,5 +7,4 @@ class CartsController < ApplicationController
 
   def error
   end
-
 end

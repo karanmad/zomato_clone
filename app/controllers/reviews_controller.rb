@@ -71,5 +71,4 @@ class ReviewsController < ApplicationController
   def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant])
   end
-
 end

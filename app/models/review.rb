@@ -1,11 +1,9 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :restaurant
-
   has_many :restaurant_uploads, dependent: :destroy
   has_many :food_uploads, dependent: :destroy
   has_many :menu_uploads, dependent: :destroy
- 
   validates :feedback, presence: true, length: {maximum: 200, minimum: 2}
   validates :rating, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
 
@@ -26,5 +24,4 @@ class Review < ApplicationRecord
       menu_uploads.build(image: f, review: self, restaurant: restaurant)
     end
   end
-
 end
