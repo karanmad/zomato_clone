@@ -14,7 +14,7 @@ class AddForeignKeyAtTopOfRestaurant < ActiveRecord::Migration[6.0]
     add_reference :restaurants, :category, null: false, foreign_key: true
     add_column :restaurants, :name, :string, null: false
     add_column :restaurants, :address, :text, null: false
-    add_column :restaurants, :phone_no, :text, null: false, unique: true
+    add_column :restaurants, :phone_no, :text, null: false, index: true
     add_column :restaurants, :email, :string, null: false, unique: true
     add_column :restaurants, :table_price, :decimal, null: false
     add_column :restaurants, :longitude, :float

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_005820) do
+ActiveRecord::Schema.define(version: 2020_08_26_055732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 2020_08_25_005820) do
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
+  create_table "promotions", force: :cascade do |t|
+    t.text "coupon_code"
+    t.date "valid_date"
+    t.decimal "minimum_amount"
+    t.decimal "discount_percent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "restaurant_uploads", force: :cascade do |t|
     t.bigint "restaurant_id", null: false
     t.bigint "review_id"
@@ -146,6 +155,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_005820) do
     t.string "uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "book_tables", "restaurants"

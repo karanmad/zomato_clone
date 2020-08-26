@@ -6,4 +6,5 @@ class AdminDashboardsController < ApplicationController
   
   def error
   end
+
 end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "auth/:provider/callback", to: "sessions#google_fb_create"
   
   resources :users, except: [:new, :destroy]
-  resources :admin_dashboards, only: [:index]
+  resources :admin_dashboards, only: [:index] 
 
   resources :restaurants do
     member do
@@ -38,5 +38,16 @@ Rails.application.routes.draw do
   
   get "cart", to: "carts#show"
   get "error", to: "admin_dashboards#error"
+  
+  resources :promotions do
+    collection do
+      get "active"
+      get "expired"
+      get "discount_ascend"
+      get "discount_descend"
+      get "date_ascend"
+      get "date_descend"
+    end
+  end
 
 end

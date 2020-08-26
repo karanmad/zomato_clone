@@ -15,7 +15,7 @@ class Restaurant < ApplicationRecord
   has_many :food_uploads, dependent: :destroy
   has_many :menu_uploads, dependent: :destroy
   validates :address, presence: true, length: { maximum: 200, minimum: 5}
-  validates :phone_no, presence: true, format: { with: VALID_PHONE_REGEX }
+  validates :phone_no, presence: true, format: { with: VALID_PHONE_REGEX }, uniqueness: true
   validates :table_price, presence: true,  numericality: { greater_than_or_equal_to: 1 }
   validates :name, presence: true, format: { with:  VALID_NAME_REGEX }, length: { maximum: 50, minimum: 2}
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, length: { maximum: 50, minimum: 8}, uniqueness: { case_sensitive: false }

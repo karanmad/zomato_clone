@@ -7,7 +7,6 @@
   <strong><%= link_to "Online order", menu_restaurant_path, class: "btn btn-white text-dark" %></strong>
   <strong><%= link_to "Book table", new_book_table_path(restaurant: @restaurant.id), class: "btn btn-white text-dark" %></strong>
 </div>
-
 <section>
   <div class="row">
     <div class="image col-md-4 mb-4">
@@ -81,7 +80,7 @@
       <% end %>
     </div>
   <% else %>
-    <h6>:No images </h4>
+    <h6>:No images </h6>
   <% end %>
 </section>
 

@@ -1,0 +1,46 @@
+<%= form_for @promotion do |form| %>
+  <div class="col-8 mx-auto">    
+    <div class="card">
+      <div class="card-header text-center">
+        <h3>PROMOTION</h3>
+      </div>      
+      <div class="card-body text-right">
+        <%= render "layouts/errors", obj: @promotion%>
+        <div class="form-group row">
+          <%= form.label :coupon_code, for: "coupon_code", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-6 ">
+            <%= form.text_field :coupon_code,for: "coupon_code", class: "form-control", placeholder: "enter coupon code", required: true %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :valid_date, for: "valid_date", class:"col-sm-4 col-form-label" %>
+          <div class="col-sm-6 text-left">
+            <%= form.date_field :valid_date, class: "form-control", rows: 4, required: true %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :minimum_amount, for: "minimum_amount", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-6 ">
+            <%= form.number_field :minimum_amount,for: "minimum_amount", class: "form-control", min: 1, id: "myInput", oninput: "myFunction()", placeholder: "enter minimum_amount", required: true %>
+          </div>
+        </div>
+         <div class="form-group row">
+          <%= form.label :discount_percent, for: "discount_percent", class:"col-sm-4 col-form-label"%>
+          <div class="col-sm-6 ">
+            <%= form.number_field :discount_percent,for: "discount_percent", class: "form-control", max: 100, min: 1, id: "myInput", oninput: "myFunction()", placeholder: "enter discount_percent", required: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row justify-content-center my-4">
+      <div class="col-4">
+        <strong><%= link_to "Back", admin_dashboards_path, class: "btn btn-secondary btn-md btn-block my-2 my-sm-0" %></strong>
+      </div>
+      <div class="col-4">
+        <strong><%= form.submit  class: "btn btn-primary btn-md btn-block my-2 my-sm-0"%></strong>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+

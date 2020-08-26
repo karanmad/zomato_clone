@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Coupon Code</th>
+      <th scope="col">valid date</th>
+      <th scope="col">Minimum Amount</th>
+      <th scope="col">Discount Percentage</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% promotions.each_with_index do |promotion,i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= promotion.coupon_code %></td>
+      <td><%= promotion.valid_date %></td>
+      <td><%= promotion.minimum_amount %></td>
+      <td><%= promotion.discount_percent %>%</td>
+    </tr>
+    <% end %>
+  </tbody> 
+</table>

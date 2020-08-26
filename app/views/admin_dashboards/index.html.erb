@@ -33,8 +33,6 @@
         <strong> <%= link_to "Food Item", food_items_path, class: "btn btn-lg btn-block btn-primary" %></strong>
       </div>
     </div>
-  </div>
-  <div class="row justify-content-center">
     <div class="card mb-4 shadow-sm col-md-3 p-0">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Restaurant Category</h4>
@@ -46,6 +44,8 @@
         <strong> <%= link_to "category", new_category_path, class: "btn btn-lg btn-block btn-primary" %></strong>
       </div>
     </div>
+  </div>
+  <div class="row justify-content-center">
     <div class="card mb-4 shadow-sm col-md-3 p-0">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Upload Images</h4>
@@ -68,6 +68,28 @@
         <strong> <%= link_to "Requests", unapprove_reviews_path, class: "btn btn-lg btn-block btn-primary" %></strong>
       </div>
     </div>
+    <div class="card mb-4 shadow-sm col-md-3 p-0">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Create Promotion</h4>
+      </div>
+      <div class="card-body">
+        <div class="mt-5 mb-4">
+          <p>create promotions for online order with dicount ,valid date, minimum amount, generate coupon code</p> 
+        </div>
+        <strong> <%= link_to "promotion", new_promotion_path, class: "btn btn-lg btn-block btn-primary" %></strong>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm col-md-3 p-0">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Promotion List</h4>
+      </div>
+      <div class="card-body">
+        <div class="mt-5 mb-4">
+          <p>All promotions for online order with dicount ,valid date, minimum amount, generate coupon code</p> 
+        </div>
+        <strong> <%= link_to "promotion", promotions_path, class: "btn btn-lg btn-block btn-primary" %></strong>
+      </div>
+    </div> 
   </div>
 </div>
 
