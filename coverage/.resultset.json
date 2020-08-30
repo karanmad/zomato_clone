@@ -6,7 +6,6 @@
           1,
           1,
           1,
-          null,
           1,
           1,
           null,
@@ -33,6 +32,10 @@
           1,
           2,
           null,
+          null,
+          1,
+          0,
+          null,
           null
         ]
       },
@@ -40,7 +43,6 @@
         "lines": [
           1,
           1,
-          null,
           1,
           1,
           null
@@ -50,12 +52,9 @@
         "lines": [
           1,
           1,
-          null,
           1,
           1,
-          null,
           1,
-          null,
           1,
           1,
           1,
@@ -71,11 +70,9 @@
           1,
           1,
           1,
-          null,
           1,
           1,
           1,
-          null,
           1,
           1,
           null,
@@ -95,6 +92,14 @@
           0,
           0,
           null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
           null,
           null
         ]
@@ -105,13 +110,10 @@
           1,
           1,
           1,
-          null,
-          42,
-          null,
+          43,
           1,
           1,
           1,
-          null,
           1,
           1,
           1,
@@ -135,7 +137,6 @@
           1,
           1,
           1,
-          null,
           1,
           1,
           1,
@@ -181,7 +182,7 @@
           null
         ]
       },
-      "/app/app/models/restaurant.rb": {
+      "/app/app/models/promotion.rb": {
         "lines": [
           1,
           1,
@@ -191,25 +192,35 @@
           1,
           null,
           1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
+          8,
           1,
           null,
           null,
+          null
+        ]
+      },
+      "/app/app/models/restaurant.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           1,
           1,
           null,
@@ -245,7 +256,7 @@
           null,
           null,
           1,
-          171,
+          169,
           null,
           null,
           null,
@@ -256,7 +267,7 @@
           null,
           null,
           1,
-          82,
+          81,
           null,
           null,
           1,
@@ -275,13 +286,12 @@
           1,
           1,
           1,
-          null,
           1,
           1,
           null
         ]
       }
     },
-    "timestamp": 1598253526
+    "timestamp": 1598782436
   }
 }

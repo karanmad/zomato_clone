@@ -6,4 +6,8 @@ class Cart < ApplicationRecord
   def total
     cart_items.collect {|item| item.valid? ? item.subtotal : 0 }.sum
   end
+
+  def placed_cart
+    toggle!(:final)
+  end
 end

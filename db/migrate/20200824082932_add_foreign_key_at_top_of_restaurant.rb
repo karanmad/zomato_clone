@@ -22,5 +22,7 @@ class AddForeignKeyAtTopOfRestaurant < ActiveRecord::Migration[6.0]
     add_attachment :restaurants, :image
     add_column :restaurants, :created_at, :datetime, precision: 6, null: false
     add_column :restaurants, :updated_at, :datetime, precision: 6, null: false
+    add_index :restaurants, :email, unique: true
+    add_index :restaurants, :phone_no, unique: true
   end
 end

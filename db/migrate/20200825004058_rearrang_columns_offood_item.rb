@@ -10,6 +10,7 @@ class RearrangColumnsOffoodItem < ActiveRecord::Migration[6.0]
     add_column :food_items, :price, :decimal, null: false
     add_column :food_items, :created_at, :datetime, precision: 6, null: false
     add_column :food_items, :updated_at, :datetime, precision: 6, null: false
+    add_index :food_items, [:name, :restaurant_id], unique: true
   end
 end
 

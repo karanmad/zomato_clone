@@ -80,4 +80,12 @@ RSpec.describe Review, type: :model do
   describe "belongs_to :restaurant" do
     it { is_expected.to belong_to :restaurant }  
   end
+
+  #model_method
+  describe "#unset_review" do
+    it "review is not approved" do
+      subject.toggle!(:approve)
+      expect(subject).to be_valid
+    end
+  end
 end

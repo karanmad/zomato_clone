@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_055732) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
   create_table "food_items", force: :cascade do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_055732) do
     t.decimal "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "restaurant_id"], name: "index_food_items_on_name_and_restaurant_id", unique: true
     t.index ["restaurant_id"], name: "index_food_items_on_restaurant_id"
   end
 
@@ -95,12 +97,13 @@ ActiveRecord::Schema.define(version: 2020_08_26_055732) do
   end
 
   create_table "promotions", force: :cascade do |t|
-    t.text "coupon_code"
-    t.date "valid_date"
-    t.decimal "minimum_amount"
-    t.decimal "discount_percent"
+    t.text "coupon_code", null: false
+    t.date "valid_date", null: false
+    t.decimal "minimum_amount", null: false
+    t.decimal "discount_percent", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["coupon_code"], name: "index_promotions_on_coupon_code", unique: true
   end
 
   create_table "restaurant_uploads", force: :cascade do |t|
@@ -132,6 +135,8 @@ ActiveRecord::Schema.define(version: 2020_08_26_055732) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_restaurants_on_category_id"
+    t.index ["email"], name: "index_restaurants_on_email", unique: true
+    t.index ["phone_no"], name: "index_restaurants_on_phone_no", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|

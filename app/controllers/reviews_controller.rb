@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
     unless @review.update(review_params)
       redirect_to edit_review_path,  flash: { danger:  "check the inputs!" }
     else
-      unset_review
+      @review.unset_review
       redirect_to review_path(restaurant: @review.restaurant.id), flash: { success: "review updated and sent for approval!"}
     end
   end
@@ -46,7 +46,9 @@ class ReviewsController < ApplicationController
   end
 
   def approve_request
-    unless !!approve_review
+    approve = @review.approve_review
+    
+    unless !!approve
       render "unapprove"
     else
       redirect_to unapprove_reviews_path, flash: { success: "Approved successfully!" } 

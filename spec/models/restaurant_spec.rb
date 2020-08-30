@@ -146,20 +146,6 @@ RSpec.describe Restaurant, type: :model do
     end
   end
 
-  describe ".restaurant_phone_no_format" do
-    context "with valid restaurant phone no format" do
-      it "restaurant containing phone no starts with 6,7,8,9 is valid" do
-        expect(subject).to be_valid
-      end
-    end
-    context "with invalid restaurant phone no format" do
-      it "restaurant not containing phone no starts with 6,7,8,9 is invalid " do
-        subject.phone_no =  "1234567890"
-        expect(subject).not_to be_valid
-      end
-    end
-  end
-
   describe ".restaurant_table_price_presence" do
     context "restaurant table price is present" do
       it "restaurant having table price is valid" do

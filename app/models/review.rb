@@ -6,7 +6,7 @@ class Review < ApplicationRecord
   has_many :menu_uploads, dependent: :destroy
   validates :feedback, presence: true, length: {maximum: 200, minimum: 2}
   validates :rating, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
-
+                                                           
   def files=(array_of_files = [])
     array_of_files.each do |f|
       restaurant_uploads.build(image: f, review: self, restaurant: restaurant)
@@ -23,5 +23,13 @@ class Review < ApplicationRecord
     array_of_photos.each do |f|
       menu_uploads.build(image: f, review: self, restaurant: restaurant)
     end
+  end
+
+  def approve_review
+    toggle!(:approve)
+  end
+
+  def unset_review
+    toggle!(:approve)
   end
 end

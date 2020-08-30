@@ -49,5 +49,4 @@ Rails.application.routes.draw do
       get "date_descend"
     end
   end
-
 end

@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     order = Order.new(order_params)
     if get_cart.cart_items.first
       if order.save
-        place_order
+        current_cart.placed_cart
         redirect_to orders_path, flash: { success: "Order is placed successfully!" }
       else
         redirect_to cart_path, flash: { danger: "address length must be more than 5 charcters!" }   
