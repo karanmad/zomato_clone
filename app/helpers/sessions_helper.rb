@@ -24,6 +24,5 @@ module SessionsHelper
     unless logged_in? and current_user.admin?
       redirect_to error_path, flash: { danger: "only admin can perform this action!" }
     end
-  end
-      
+  end     
 end

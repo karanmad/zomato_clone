@@ -1,27 +1,15 @@
-<% if logged_in? && current_user.admin %>
-  <div class="text-right border-bottom border-secondary mb-2" %>
-    <strong><%= link_to "Back", admin_dashboards_path, class: "btn btn-outline-secondary mb-2 mt-2"%></strong>
-    <strong><%= link_to "active coupon", active_promotions_path, class: "btn btn-outline-success mb-2 mt-2" %></strong>
-    <strong><%= link_to "expired coupon", expired_promotions_path, class: "btn btn-outline-info mb-2 mt-2" %></strong>
-   </div>
-<% end %>
-<div class="dropdown d-inline">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    filter by discount%
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <%= link_to "Ascending", discount_ascend_promotions_path, class: "dropdown-item"%> 
-    <%= link_to "Descending", discount_descend_promotions_path, class: "dropdown-item"%>   
-  </div>
-</div>
-<div class="dropdown d-inline">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    filter by validity date
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <%= link_to "Ascending", date_ascend_promotions_path, class: "dropdown-item"%> 
-    <%= link_to "Desending", date_descend_promotions_path, class: "dropdown-item"%> 
-  </div>
+<div class="col-2 my-0 pr-0 d-inline justify-content-between">
+  <%= form_tag(promotions_path, method: :get) do %> 
+    <select name="filter_option" onchange="this.form.submit()" class="h-50">
+      <option value=" ">filter</option>
+      <option value="1" <%= params[:filter_option] == "1" ? "selected" : ""  %>>active coupon</option>
+      <option value="2" <%= params[:filter_option] == "2" ? "selected" : ""  %>>expired coupon</option>
+      <option value="3" <%= params[:filter_option] == "3" ? "selected" : ""  %>>discount% Ascending</option>
+      <option value="4" <%= params[:filter_option] == "4" ? "selected" : ""  %>>discount% Descending</option>
+      <option value="5" <%= params[:filter_option] == "5" ? "selected" : ""  %>>valid date Ascending</option> 
+      <option value="6" <%= params[:filter_option] == "6" ? "selected" : ""  %>>valid date Descending</option>
+    </select>
+  <% end %>
 </div>
 <%= render "promotions/list", promotions: @promotion %>
 <div class="row justify-content-right">

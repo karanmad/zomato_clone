@@ -23,4 +23,18 @@ RSpec.describe Cart, type: :model do
       expect(cart_item.subtotal).to eq(cart.total)
     end
   end
+ 
+  describe "#placed_cart" do
+    it "cart is placed" do
+      cart.placed_cart
+      expect(cart.final).to eq(true)
+    end
+  end
+
+  #describe "require_same_restaurant" do
+  #  it "restaurant different for new cart items" do
+  #    cart.cart_items.delete_all
+   #   expect(cart.cart_items).to eq()
+   # end
+  #end
 end

@@ -56,7 +56,7 @@ RSpec.describe BookTable, type: :model do
     it { is_expected.to belong_to :restaurant }  
   end
   
-  #model_method
+  #instance_method
   describe "#total" do
     it "should return book table total" do
       expect((restaurant.table_price)*subject.heads).to eq(subject.total)

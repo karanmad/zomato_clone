@@ -6,7 +6,7 @@ class CartItemsController < ApplicationController
   def add
     cart = current_cart.cart_items.new(cart_items_params)
     restaurant ||= cart.food_item.restaurant_id
-    require_same_restaurant
+    current_cart.require_same_restaurant
     unless cart.save
       redirect_to menu_restaurant_path(restaurant), flash: { danger: "fooditem already added!" }
     else

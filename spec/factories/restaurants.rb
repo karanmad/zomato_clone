@@ -5,6 +5,6 @@ FactoryBot.define do
     address { "unknown address" }
     phone_no { Faker::PhoneNumber.phone_number }
     table_price { 500.0 }
-    category_id { create(:category).id } 
+    category
   end
 end

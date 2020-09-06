@@ -31,13 +31,13 @@ class RestaurantsController < ApplicationController
     unless @restaurant.update(restaurant_params)
       render "edit"
     else
-      redirect_to "/restaurants", flash: { success: "Restaurant is updated successfully!" }
+      redirect_to restaurants_path, flash: { success: "Restaurant is updated successfully!" }
     end
   end
 
   def destroy
     @restaurant.destroy
-    redirect_to "/restaurants", flash: { success: "Restaurant is deleted successfully!" }
+    redirect_to restaurants_path, flash: { success: "Restaurant is deleted successfully!" }
   end
 
   def map

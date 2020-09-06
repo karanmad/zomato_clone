@@ -3,6 +3,27 @@ class PromotionsController < ApplicationController
   before_action :require_admin
 
   def index
+    if params[:filter_option] == "1"
+      @promotion = Promotion.where(['valid_date >= ?', DateTime.now])
+      return
+    elsif params[:filter_option] == "2"
+      @promotion = Promotion.where(['valid_date < ?', DateTime.now])
+      return
+    elsif params[:filter_option] == "3"
+      @promotion = Promotion.order(:discount_percent)
+      return
+    elsif params[:filter_option] == "4"
+      @promotion = Promotion.order(:discount_percent).reverse
+      return
+    elsif params[:filter_option] == "5"
+      @promotion = Promotion.order('valid_date ASC')
+      return
+    elsif params[:filter_option] == "6"
+      @promotion = Promotion.order('valid_date DESC')
+      return
+    else params[:filter_option] == " "
+      @promotion = Promotion.all
+    end
     @promotion = Promotion.all
   end
 
@@ -18,34 +39,6 @@ class PromotionsController < ApplicationController
     else
       render "new"
     end
-  end
-
-  def active
-    @promotion = Promotion.where(['valid_date >= ?', DateTime.now])
-  end
-
-  def expired
-    @promotion = Promotion.where(['valid_date < ?', DateTime.now])
-  end
-
-  def discount_ascend
-    @promotion = Promotion.order(:discount_percent)
-    render "index"
-  end
-
-  def discount_descend
-    @promotion = Promotion.order(:discount_percent).reverse
-    render "index"
-  end
-
-  def date_ascend
-    @promotion = Promotion.order('valid_date ASC')
-    render "index"
-  end
-
-  def date_descend
-    @promotion = Promotion.order('valid_date DESC')
-    render "index"
   end
 
   private

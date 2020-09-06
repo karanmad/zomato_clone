@@ -81,11 +81,18 @@ RSpec.describe Review, type: :model do
     it { is_expected.to belong_to :restaurant }  
   end
 
-  #model_method
+  #instance_method
+  describe "#approve_review" do
+    it "review is not approved" do
+      review.approve_review
+      expect(review.approve).to eq(true)
+    end
+  end
+
   describe "#unset_review" do
     it "review is not approved" do
-      subject.toggle!(:approve)
-      expect(subject).to be_valid
+      review.unset_review
+      expect(review.approve).to eq(false)
     end
   end
 end

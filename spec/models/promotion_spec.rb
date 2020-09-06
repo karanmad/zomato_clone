@@ -46,7 +46,7 @@ RSpec.describe Promotion, type: :model do
     end
   end
 
-  #model_method
+  #instance_method
   describe "#date_cannot_be_in_the_past" do
     it "date must not be in past" do
       subject.valid_date = Date.today

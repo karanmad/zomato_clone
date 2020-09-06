@@ -39,14 +39,5 @@ Rails.application.routes.draw do
   get "cart", to: "carts#show"
   get "error", to: "admin_dashboards#error"
   
-  resources :promotions do
-    collection do
-      get "active"
-      get "expired"
-      get "discount_ascend"
-      get "discount_descend"
-      get "date_ascend"
-      get "date_descend"
-    end
-  end
+  resources :promotions, only: [:index, :new, :create]
 end
