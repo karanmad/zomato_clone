@@ -15,6 +15,6 @@ class Cart < ApplicationRecord
   end
 
   def require_same_restaurant
-    self.cart_items.delete_all unless self.cart_items.first.food_item.restaurant_id == self.cart_items.last.food_item.restaurant_id
+    cart_items.delete_all unless cart_items.first.food_item.restaurant_id == cart_items.last.food_item.restaurant_id
   end
 end

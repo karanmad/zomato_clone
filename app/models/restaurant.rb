@@ -65,8 +65,8 @@ class Restaurant < ApplicationRecord
     as_json(
       options.merge(only: %i[name address],
                     include: {
-                      category: { only: :name},
-                      food_items: {only: :name}
+                      category: { only: :name },
+                      food_items: { only: :name }
                     })
     )
   end
