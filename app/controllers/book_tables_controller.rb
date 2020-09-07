@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BookTablesController < ApplicationController
-  before_action :set_restaurant, only: [:new, :create]
+  before_action :set_restaurant, only: %i[new create]
   before_action :require_user
   before_action :only_user
 
@@ -10,10 +12,10 @@ class BookTablesController < ApplicationController
   def create
     @book_table = current_user.book_tables.new(book_table_params)
 
-    unless @book_table.save
-      render "new"
+    if @book_table.save
+      redirect_to book_tables_path, flash: { success: 'Booked successfully!' }
     else
-      redirect_to book_tables_path, flash: { success: "Booked successfully!" }
+      render 'new'
     end
   end
 
@@ -22,7 +24,7 @@ class BookTablesController < ApplicationController
   end
 
   private
-  
+
   def book_table_params
     params.require(:book_table).permit(:restaurant_id, :heads, :date, :time)
   end

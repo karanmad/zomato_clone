@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CartItemsController < ApplicationController
-  before_action :set_cart, only: [:update, :destroy]
+  before_action :set_cart, only: %i[update destroy]
   before_action :require_user
   before_action :only_user
 
@@ -7,24 +9,25 @@ class CartItemsController < ApplicationController
     cart = current_cart.cart_items.new(cart_items_params)
     restaurant ||= cart.food_item.restaurant_id
     current_cart.require_same_restaurant
-    unless cart.save
-      redirect_to menu_restaurant_path(restaurant), flash: { danger: "fooditem already added!" }
+
+    if cart.save
+      redirect_to menu_restaurant_path(restaurant), flash: { success: 'item added!' }
     else
-      redirect_to menu_restaurant_path(restaurant), flash: { success: "item added!" }
+      redirect_to menu_restaurant_path(restaurant), flash: { danger: 'fooditem already added!' }
     end
   end
 
   def update
-    unless @cart_item.update(cart_items_params)
-      redirect_to cart_path, flash: { danger: "quantity must be greater than 0 and less than equal to 20" }
+    if @cart_item.update(cart_items_params)
+      redirect_to cart_path, flash: { success: 'cartitem updated successfully!' }
     else
-      redirect_to cart_path, flash: { success: "cartitem updated successfully!" }
+      redirect_to cart_path, flash: { danger: 'quantity must be greater than 0 and less than equal to 20' }
     end
   end
 
   def destroy
     @cart_item.destroy
-    redirect_to cart_path, flash: { success: "fooditem is removed successfully!" }
+    redirect_to cart_path, flash: { success: 'fooditem is removed successfully!' }
   end
 
   private

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRestaurantUploads < ActiveRecord::Migration[6.0]
   def change
     create_table :restaurant_uploads do |t|

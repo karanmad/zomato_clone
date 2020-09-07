@@ -1,13 +1,14 @@
-module CartsHelper
+# frozen_string_literal: true
 
+module CartsHelper
   def get_cart
-    if current_user.carts.count > 0 && !current_user.carts.last.final
+    if current_user.carts.count.positive? && !current_user.carts.last.final
       current_cart
     else
       set_cart
     end
   end
-    
+
   def set_cart
     @cart = current_user.carts.create
   end

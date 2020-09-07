@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RearrangColumnsOfOrder < ActiveRecord::Migration[6.0]
   def change
     remove_column :orders, :address, :text, null: false

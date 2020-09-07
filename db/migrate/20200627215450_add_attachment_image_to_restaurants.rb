@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAttachmentImageToRestaurants < ActiveRecord::Migration[6.0]
   def self.up
     change_table :restaurants do |t|

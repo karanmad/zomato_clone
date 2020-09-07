@@ -1,44 +1,45 @@
+# frozen_string_literal: true
+
 class ReviewsController < ApplicationController
-  before_action :set_restaurant, only: [:new, :show]
-  before_action :set_review, only: [:edit, :update, :destroy, :approve_request, :reject]
+  before_action :set_restaurant, only: %i[new show]
+  before_action :set_review, only: %i[edit update destroy approve_request reject]
   before_action :require_user, except: [:show]
-  before_action :only_user, only: [:new, :create]
-  before_action :require_admin, only: [:unapprove, :approve_request, :reject]
+  before_action :only_user, only: %i[new create]
+  before_action :require_admin, only: %i[unapprove approve_request reject]
 
   def new
-    @review = Review.new  
+    @review = Review.new
   end
 
   def create
     @review = current_user.reviews.new(review_params)
-    
-    unless @review.save
-      redirect_back fallback_location: new_review_path, flash: { danger:  "feedback must contain minimum 2 characters" }
+
+    if @review.save
+      redirect_to restaurant_path(@review.restaurant_id), flash: { success: 'Thanks for giving review, your review is send to admin for approval!' }
     else
-      redirect_to restaurant_path(@review.restaurant_id), flash: { success: "Thanks for giving review, your review is send to admin for approval!" }
+      redirect_back fallback_location: new_review_path, flash: { danger: 'feedback must contain minimum 2 characters' }
     end
   end
-  
+
   def show
     @review = @restaurant.reviews.where(approve: true).all
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    unless @review.update(review_params)
-      redirect_to edit_review_path,  flash: { danger:  "check the inputs!" }
-    else
+    if @review.update(review_params)
       @review.unset_review
-      redirect_to review_path(restaurant: @review.restaurant.id), flash: { success: "review updated and sent for approval!"}
+      redirect_to review_path(restaurant: @review.restaurant.id), flash: { success: 'review updated and sent for approval!' }
+    else
+      redirect_to edit_review_path, flash: { danger: 'check the inputs!' }
     end
   end
-  
+
   def destroy
     @restaurant = @review.restaurant
     @review.destroy
-    redirect_to review_path(restaurant: @restaurant.id), flash: { success: "review deleted succesfully!"}
+    redirect_to review_path(restaurant: @restaurant.id), flash: { success: 'review deleted succesfully!' }
   end
 
   def unapprove
@@ -46,18 +47,18 @@ class ReviewsController < ApplicationController
   end
 
   def approve_request
-    unless @review.approve_review?
-      render "unapprove"
+    if @review.approve_review?
+      redirect_to unapprove_reviews_path, flash: { success: 'Approved successfully!' }
     else
-      redirect_to unapprove_reviews_path, flash: { success: "Approved successfully!" } 
+      render 'unapprove'
     end
   end
 
   def reject
     @review.destroy
-    redirect_to unapprove_reviews_path, flash: { success: "review rejected!" }
+    redirect_to unapprove_reviews_path, flash: { success: 'review rejected!' }
   end
-  
+
   private
 
   def review_params

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RearrangColumnsOfMenusUploads < ActiveRecord::Migration[6.0]
   def change
     remove_reference :menu_uploads, :review, null: false, foreign_key: true

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RearrangColumnsOfCartItem < ActiveRecord::Migration[6.0]
   def change
     remove_reference :cart_items, :cart, null: false, foreign_key: true

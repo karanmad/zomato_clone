@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RearrangColumnsOfReview < ActiveRecord::Migration[6.0]
   def change
     remove_column :reviews, :rating, :integer, null: false
