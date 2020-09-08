@@ -24,7 +24,7 @@ class BookTablesController < ApplicationController
   end
 
   private
-
+  
   def book_table_params
     params.require(:book_table).permit(:restaurant_id, :heads, :date, :time)
   end

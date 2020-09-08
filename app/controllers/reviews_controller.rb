@@ -47,7 +47,7 @@ class ReviewsController < ApplicationController
   end
 
   def approve_request
-    if @review.approve_review?
+    if @review.approve_review
       redirect_to unapprove_reviews_path, flash: { success: 'Approved successfully!' }
     else
       render 'unapprove'

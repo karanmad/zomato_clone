@@ -32,12 +32,4 @@ RSpec.describe Cart, type: :model do
       expect(cart.final).to eq(true)
     end
   end
-
-  describe '#require_same_restaurant' do
-    let(:cart_item2) { FactoryBot.create(:cart_item, cart_id: cart.id, food_item_id: food_item2.id) }
-
-    it 'restaurant different for new cart items' do
-      expect(CartItem.count).to eq(false)
-    end
-  end
 end

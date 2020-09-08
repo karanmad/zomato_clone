@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
    subject(:restaurant) { FactoryBot.create(:restaurant) }
-   let(:review)  { FactoryBot.create(:review, restaurant_id: restaurant.id, ) }
+   let(:review)  { FactoryBot.create(:review, restaurant_id: restaurant.id) }
 
   #validation 
   describe ".restaurant_name_presence" do
