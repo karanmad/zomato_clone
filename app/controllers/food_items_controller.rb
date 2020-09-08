@@ -11,13 +11,13 @@ class FoodItemsController < ApplicationController
   end
 
   def new
-    @food_items = FoodItem.new
+    @food_item = FoodItem.new
   end
 
   def create
-    @food_items = FoodItem.new(items_params)
+    @food_item = FoodItem.new(items_params)
 
-    if @food_items.save
+    if @food_item.save
       redirect_to food_items_path, flash: { success: 'fooditem is created successfully!' }
     else
       render 'new'
@@ -27,7 +27,7 @@ class FoodItemsController < ApplicationController
   def edit; end
 
   def update
-    if @food_items.update(items_params)
+    if @food_item.update(items_params)
       redirect_to food_items_path, flash: { success: 'fooditem is updated successfully!' }
     else
       render 'edit'
@@ -35,7 +35,7 @@ class FoodItemsController < ApplicationController
   end
 
   def destroy
-    @food_items.destroy
+    @food_item.destroy
     redirect_to food_items_path, flash: { success: 'fooditem is deleted successfully!' }
   end
 
@@ -46,10 +46,10 @@ class FoodItemsController < ApplicationController
   end
 
   def set_food
-    @food_items = FoodItem.find(params[:id])
+    @food_item = FoodItem.find(params[:id])
   end
 
   def set_restaurant
-    @restaurant ||= Restaurant.all
+    @restaurants ||= Restaurant.all
   end
 end

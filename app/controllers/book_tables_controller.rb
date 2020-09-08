@@ -20,7 +20,7 @@ class BookTablesController < ApplicationController
   end
 
   def index
-    @book_table ||= current_user.book_tables.all.reverse
+    @book_tables ||= current_user.book_tables.all.reverse
   end
 
   private

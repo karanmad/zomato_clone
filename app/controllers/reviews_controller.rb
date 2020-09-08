@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = @restaurant.reviews.where(approve: true).all
+    @reviews = @restaurant.reviews.where(approve: true).all
   end
 
   def edit; end
@@ -43,7 +43,7 @@ class ReviewsController < ApplicationController
   end
 
   def unapprove
-    @review = Review.where(approve: false).all
+    @reviews = Review.where(approve: false).all
   end
 
   def approve_request

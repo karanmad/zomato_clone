@@ -39,7 +39,15 @@
         <% else %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Cart <span class="badge badge-primary"></i><%= get_cart.cart_items.count %></span></a>
+            <a class="nav-link" href="/cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Cart 
+             <span class="badge badge-primary"></i>
+                <% if current_user.carts.count.positive? && !current_user.carts.last.final%>
+                  <%= current_cart.cart_items.count %>
+                <% else %>
+                  <%= current_user.carts.create.cart_items.count %>
+                <% end %>
+              </span>
+            </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

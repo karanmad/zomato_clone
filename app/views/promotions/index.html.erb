@@ -1,17 +1,26 @@
-<div class="col-2 my-0 pr-0 d-inline justify-content-between">
-  <%= form_tag(promotions_path, method: :get) do %> 
-    <select name="filter_option" onchange="this.form.submit()" class="h-50">
-      <option value=" ">filter</option>
-      <option value="1" <%= params[:filter_option] == "1" ? "selected" : ""  %>>active coupon</option>
-      <option value="2" <%= params[:filter_option] == "2" ? "selected" : ""  %>>expired coupon</option>
-      <option value="3" <%= params[:filter_option] == "3" ? "selected" : ""  %>>discount% Ascending</option>
-      <option value="4" <%= params[:filter_option] == "4" ? "selected" : ""  %>>discount% Descending</option>
-      <option value="5" <%= params[:filter_option] == "5" ? "selected" : ""  %>>valid date Ascending</option> 
-      <option value="6" <%= params[:filter_option] == "6" ? "selected" : ""  %>>valid date Descending</option>
-    </select>
-  <% end %>
+<div class="form-group row">
+  <div class="col-2">
+    <%= form_tag(promotions_path, method: :get) do %> 
+      <select name="promotion_sort" onchange="this.form.submit()" class="h-50 d-inline">
+        <option value=" ">promotion sort</option>
+        <option value="1" <%= params[:promotion_sort] == "1" ? "selected" : ""  %>>valid_date_asc</option> 
+        <option value="2" <%= params[:promotion_sort] == "2" ? "selected" : ""  %>>valid_date_desc</option>
+        <option value="3" <%= params[:promotion_sort] == "3" ? "selected" : ""  %>>discount_percent_asc</option>
+        <option value="4" <%= params[:promotion_sort] == "4" ? "selected" : ""  %>>discount_percent_desc</option>
+      </select>
+    <% end %>
+  </div>
+  <div class="col-2">
+    <%= form_tag(promotions_path, method: :get) do %> 
+      <select name="filter" onchange="this.form.submit()" class="h-50">
+        <option value=" ">filter</option>
+        <option value="1" <%= params[:filter] == "1" ? "selected" : ""  %>>active</option> 
+        <option value="2" <%= params[:filter] == "2" ? "selected" : ""  %>>expired</option>
+      </select>
+    <% end %>
+  </div>
 </div>
-<%= render "promotions/list", promotions: @promotion %>
+<%= render "promotions/list", promotions: @promotions %>
 <div class="row justify-content-right">
   <div class="col-2">
     <%= link_to "Back", admin_dashboards_path, class: "btn btn-lg btn-block btn-secondary"%>  

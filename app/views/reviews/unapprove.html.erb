@@ -1,10 +1,10 @@
 <div class="col-8 mx-auto">
   <div class="card">
-  <% unless !@review.first %>
+  <% unless !@reviews.first %>
     <div class="card-header text-center">
       <h4>Approval Request</h4>
     </div>
-    <% @review.each do |review|%>
+    <% @reviews.each do |review|%>
       <div class="card-body border-bottom border-dark text-dark">
         <span class="card-title d-block">For restaurant : <%= review.restaurant.name %></span>
         <span class="card-title d-block">user name : <%= review.user.name %></span>

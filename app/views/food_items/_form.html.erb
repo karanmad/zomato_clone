@@ -9,8 +9,8 @@
           <h1 class="title text-center">Update Food Item</h1>
           <% content_for :title, "Update Category" %>
         <% end %>
-        <%= render "layouts/errors", obj: @food_items%>
-        <%= form_for(@food_items) do |form| %>
+        <%= render "layouts/errors", obj: @food_item%>
+        <%= form_for(@food_item) do |form| %>
           <div class="form-group row">
             <%= form.label :name,"Food Item Name :", for: "name", class:"col-sm-3 col-form-label"%>
             <div class="col-sm-9">
@@ -27,7 +27,7 @@
             <%= form.label :restaurant, for: "restaurant", class:"col-sm-4 col-form-label"  %>
             <div class="col-sm-2 my-2">
               <%= form.select(:restaurant_id)  do %>
-                <% @restaurant.each do |c| %>
+                <% @restaurants.each do |c| %>
                   <%= content_tag(:option, c.name, value: c.id) %>
                 <% end %>
               <% end %>

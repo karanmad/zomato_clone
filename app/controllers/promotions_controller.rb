@@ -5,28 +5,9 @@ class PromotionsController < ApplicationController
   before_action :require_admin
 
   def index
-    if params[:filter_option] == '1'
-      @promotion = Promotion.where(['valid_date >= ?', DateTime.now])
-      return
-    elsif params[:filter_option] == '2'
-      @promotion = Promotion.where(['valid_date < ?', DateTime.now])
-      return
-    elsif params[:filter_option] == '3'
-      @promotion = Promotion.order(:discount_percent)
-      return
-    elsif params[:filter_option] == '4'
-      @promotion = Promotion.order(:discount_percent).reverse
-      return
-    elsif params[:filter_option] == '5'
-      @promotion = Promotion.order('valid_date ASC')
-      return
-    elsif params[:filter_option] == '6'
-      @promotion = Promotion.order('valid_date DESC')
-      return
-    else params[:filter_option] == ' '
-         @promotion = Promotion.all
-    end
-    @promotion = Promotion.all
+    @promotions = Promotion.all
+    @promotions = @promotions.sort_by_params(params[:promotion_sort]) if params[:promotion_sort]
+    @promotions = @promotions.filter_by_params(params[:filter]) if params[:filter]
   end
 
   def new

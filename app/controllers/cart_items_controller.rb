@@ -6,11 +6,11 @@ class CartItemsController < ApplicationController
   before_action :only_user
 
   def add
-    cart = current_cart.cart_items.new(cart_items_params)
-    restaurant ||= cart.food_item.restaurant_id
+    @cart_item = current_cart.cart_items.new(cart_items_params)
+    restaurant ||= @cart_item.food_item.restaurant_id
     current_cart.require_same_restaurant
 
-    if cart.save
+    if @cart_item.save
       redirect_to menu_restaurant_path(restaurant), flash: { success: 'item added!' }
     else
       redirect_to menu_restaurant_path(restaurant), flash: { danger: 'fooditem already added!' }

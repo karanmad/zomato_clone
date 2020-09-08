@@ -21,6 +21,7 @@ gem 'paperclip', '~> 6.0.0'
 gem 'pg'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
+#gem 'rubocop'
 gem 'sass-rails', '>= 6'
 # gem "sqlite3", "~> 1.4"
 gem 'turbolinks', '~> 5'

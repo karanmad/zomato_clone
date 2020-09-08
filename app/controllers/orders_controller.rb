@@ -5,10 +5,10 @@ class OrdersController < ApplicationController
   before_action :only_user
 
   def create
-    order = Order.new(order_params)
+    @order = Order.new(order_params)
 
-    if get_cart.cart_items.first
-      if order.save
+    if current_cart.cart_items.first
+      if @order.save
         current_cart.placed_cart
         redirect_to orders_path, flash: { success: 'Order is placed successfully!' }
       else
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @placed_cart = current_user.carts.where(final: true).all.reverse
+    @placed_carts = current_user.carts.where(final: true).all.reverse
   end
 
   private

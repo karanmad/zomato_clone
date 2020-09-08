@@ -5,7 +5,7 @@ class Cart < ApplicationRecord
   has_one :order, dependent: :destroy
 
   belongs_to :user
-
+  
   def total
     cart_items.collect { |item| item.valid? ? item.subtotal : 0 }.sum
   end
