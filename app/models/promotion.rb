@@ -20,7 +20,7 @@ class Promotion < ApplicationRecord
       order(:discount_percent)
     elsif promotion_option == '4'
       order(:discount_percent).reverse  
-    else promotion_option == ' '
+    else
       all
     end  
   end 
