@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Promotion, type: :model do
   subject(:promotion) { FactoryBot.build(:promotion) }
   let(:promotion1) { FactoryBot.create(:promotion, valid_date: Date.today) }
+  Promotion.create(coupon_code: "xyzz", valid_date: Date.today, discount_percent: 10, minimum_amount: 500) 
+
+
 
   #validation
   describe ".promotion_coupon_code_presence" do
