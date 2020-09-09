@@ -65,7 +65,7 @@ RSpec.describe Promotion, type: :model do
   #class_method
   describe ".sort_by_params" do
     it "date must be in ascending order" do
-      expect(Promotion.sort_by_params("valid_adte_asc").first.valid_date).to eq(Promotion.minimum("valid_date"))
+      expect(Promotion.sort_by_params("valid_date_asc").first.valid_date).to eq(Promotion.minimum("valid_date"))
     end
     it "date must be in descending order" do
       expect(Promotion.sort_by_params("valid_date_desc").first.valid_date).to eq(Promotion.maximum("valid_date"))
