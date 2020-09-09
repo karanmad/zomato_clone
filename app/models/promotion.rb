@@ -12,13 +12,13 @@ class Promotion < ApplicationRecord
   end
 
   def self.sort_by_params(promotion_option)
-    if promotion_option == '1'
+    if promotion_option == 'valid_date_asc'
       order('valid_date ASC')
-    elsif promotion_option == '2'
+    elsif promotion_option == 'valid_date_desc'
       order('valid_date DESC')
-    elsif promotion_option == '3'
+    elsif promotion_option == 'discount_percent_asc'
       order(:discount_percent)
-    elsif promotion_option == '4'
+    elsif promotion_option == 'discount_percent_desc'
       order(:discount_percent).reverse  
     else
       all
@@ -26,9 +26,9 @@ class Promotion < ApplicationRecord
   end 
 
   def self.filter_by_params(filter_option)
-    if filter_option == '1'
+    if filter_option == 'active_coupon'
       where(['valid_date >= ?', DateTime.now])
-    elsif filter_option == '2'
+    elsif filter_option == 'expired_coupon'
       where(['valid_date < ?', DateTime.now])
     else
       all

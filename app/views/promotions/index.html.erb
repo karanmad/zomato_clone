@@ -1,22 +1,12 @@
 <div class="form-group row">
-  <div class="col-2">
+  <div class="col-3">
     <%= form_tag(promotions_path, method: :get) do %> 
-      <select name="promotion_sort" onchange="this.form.submit()" class="h-50 d-inline">
-        <option value=" ">promotion sort</option>
-        <option value="1" <%= params[:promotion_sort] == "1" ? "selected" : ""  %>>valid_date_asc</option> 
-        <option value="2" <%= params[:promotion_sort] == "2" ? "selected" : ""  %>>valid_date_desc</option>
-        <option value="3" <%= params[:promotion_sort] == "3" ? "selected" : ""  %>>discount_percent_asc</option>
-        <option value="4" <%= params[:promotion_sort] == "4" ? "selected" : ""  %>>discount_percent_desc</option>
-      </select>
+      <%= select_tag "promotion_sort", options_for_select( { "Promotion Sort" => " ", "Valid Date Ascending" => "valid_date_asc", "Valid Date Descending" => "valid_date_desc", "Discount Percent Ascending" => "discount_percent_asc", "Discount Percent Descending" => "discount_percent_desc" }, params[:promotion_sort]), :onchange => "this.form.submit();" %>
     <% end %>
   </div>
   <div class="col-2">
     <%= form_tag(promotions_path, method: :get) do %> 
-      <select name="filter" onchange="this.form.submit()" class="h-50">
-        <option value=" ">filter</option>
-        <option value="1" <%= params[:filter] == "1" ? "selected" : ""  %>>active</option> 
-        <option value="2" <%= params[:filter] == "2" ? "selected" : ""  %>>expired</option>
-      </select>
+      <%= select_tag "filter", options_for_select( { "Filter" => " ", "Active Coupon" => "active_coupon", "Expired Coupon" => "expired_coupon" }, params[:filter]), :onchange => "this.form.submit();" %>  
     <% end %>
   </div>
 </div>

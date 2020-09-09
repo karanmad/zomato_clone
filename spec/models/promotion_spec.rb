@@ -65,16 +65,16 @@ RSpec.describe Promotion, type: :model do
   #class_method
   describe ".sort_by_params" do
     it "date must be in ascending order" do
-      expect(Promotion.sort_by_params("1").first.valid_date).to eq(Promotion.minimum("valid_date"))
+      expect(Promotion.sort_by_params("valid_adte_asc").first.valid_date).to eq(Promotion.minimum("valid_date"))
     end
     it "date must be in descending order" do
-      expect(Promotion.sort_by_params("2").first.valid_date).to eq(Promotion.maximum("valid_date"))
+      expect(Promotion.sort_by_params("valid_date_desc").first.valid_date).to eq(Promotion.maximum("valid_date"))
     end
     it "discount percent must be in ascending order" do
-      expect(Promotion.sort_by_params("3").first.discount_percent).to eq(Promotion.minimum("discount_percent"))
+      expect(Promotion.sort_by_params("discount_percent_asc").first.discount_percent).to eq(Promotion.minimum("discount_percent"))
     end
     it "discount percent must be in descending order" do
-      expect(Promotion.sort_by_params("4").first.discount_percent).to eq(Promotion.maximum("discount_percent"))
+      expect(Promotion.sort_by_params("discount_percent_desc").first.discount_percent).to eq(Promotion.maximum("discount_percent"))
     end
     it "must contain all promotion" do
       expect(Promotion.sort_by_params(" ").first).to eq(Promotion.first) 
@@ -83,10 +83,10 @@ RSpec.describe Promotion, type: :model do
 
   describe ".filter_by_params" do
     it "promotion must be active" do
-      expect(Promotion.filter_by_params("1")).to include(promotion1)
+      expect(Promotion.filter_by_params("active_coupon")).to include(promotion1)
     end
     it "promotion must be expired" do
-      expect(Promotion.filter_by_params("2")).not_to include(promotion1)
+      expect(Promotion.filter_by_params("expired_coupon")).not_to include(promotion1)
     end
     it "must contain all promotion" do
       expect(Promotion.filter_by_params(" ").first).to eq(Promotion.first) 
